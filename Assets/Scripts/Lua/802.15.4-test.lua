@@ -164,7 +164,7 @@ function receive(ring, rxQueue, rxDev, ns, threadId)
 	ringsize_hist:save("rxq-ringsize-distribution-histogram-"..rxDev["id"]..".csv")
 end
 
---Forwarding with HARQ -J
+--threadID = 1: FFD/Coordinator, threadID = 2: RFD
 function forward(ring, txQueue, txDev, ns, rate, latency, lossrate, harqLossRate, threadId)
 
 	local latencyHarq = 6;
@@ -176,11 +176,11 @@ function forward(ring, txQueue, txDev, ns, rate, latency, lossrate, harqLossRate
 	local linkspeed = txDev:getLinkStatus().speed
 	print("linkspeed = "..linkspeed)
 
-	local tsc_hz = libmoon:getCyclesFrequency() --? -J
+	local tsc_hz = libmoon:getCyclesFrequency()
 	local tsc_hz_ms = tsc_hz / 1000
 	print("tsc_hz = "..tsc_hz)
 
-	local packetInfo = {} --? -J
+	local packetInfo = {}
 	local packetInfoLength = 0
 
 	ns.messageToSend = nil
@@ -212,9 +212,10 @@ function forward(ring, txQueue, txDev, ns, rate, latency, lossrate, harqLossRate
 			local retransmissionAttempt = 0;
 			local buf = bufs[iix]
 			
-			-- get the buf's arrival timestamp and compute departure time
+            ---------------------------------------------------------------------------------------------------------------------
+			--get the buf's arrival timestamp and compute departure time
 			--decides if packet has to be resend and resends until arrived or attempts exhausted -J
-			while math.random() < harqLossRate and retransmissionAttempt <= harqMaxAttempt do 
+		    while math.random() < harqLossRate and retransmissionAttempt <= harqMaxAttempt do 
 				retransmissionAttempt = retransmissionAttempt + 1
 			end
 
@@ -227,6 +228,7 @@ function forward(ring, txQueue, txDev, ns, rate, latency, lossrate, harqLossRate
 			else
 				--print("HARQ retransmission attempt: ", retransmissionAttempt)
 			end
+            ---------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -263,15 +265,15 @@ function forward(ring, txQueue, txDev, ns, rate, latency, lossrate, harqLossRate
 				end
 			end
 
-			
+			--? -J
 			if threadId == 2 then
-			local packetId = packetInfoLength + iix
-            packetInfo[packetId] = {
-                id = packetId,
-                receiveTime = buf.udata64 / tsc_hz_ms - start_time,
-                sendTime = 0,
-				rlcQueue = pipe:countPktsizedRing(ring.ring)
-            }
+                local packetId = packetInfoLength + iix
+                packetInfo[packetId] = {
+                    id = packetId,
+                    receiveTime = buf.udata64 / tsc_hz_ms - start_time,
+                    sendTime = 0,
+                    rlcQueue = pipe:countPktsizedRing(ring.ring)
+                }
 			end
 
 			local pktSize = buf.pkt_len + 24
@@ -292,16 +294,16 @@ function forward(ring, txQueue, txDev, ns, rate, latency, lossrate, harqLossRate
 			if threadId == 2 then
 				for iix = 1, count do
 
-				sendCount = sendCount - 1
+                    sendCount = sendCount - 1
 
-				if sendCount < 0 then
-					currentSendTime = "Lost"
-				end
+                    if sendCount < 0 then
+                        currentSendTime = "Lost"
+                    end
 
 
-                local packetId = packetInfoLength + iix
-                if packetInfo[packetId] then
-                    packetInfo[packetId].sendTime = currentSendTime  - start_time
+                    local packetId = packetInfoLength + iix
+                    if packetInfo[packetId] then
+                        packetInfo[packetId].sendTime = currentSendTime  - start_time
 					
 					--print(string.format("Inserted Packet Info: ID=%d, ReceiveTime=%s, SendTime=%s",
 					--	packetInfo[packetId].id,
@@ -309,10 +311,9 @@ function forward(ring, txQueue, txDev, ns, rate, latency, lossrate, harqLossRate
 					--	tostring(packetInfo[packetId].sendTime)
 					--))
 
+                    end
                 end
-            end
 			end
-			
 		end
 
 		packetInfoLength = packetInfoLength + count
@@ -322,39 +323,36 @@ function forward(ring, txQueue, txDev, ns, rate, latency, lossrate, harqLossRate
 
 
 
-if currentTime - lastPrintTime >= 1 and packetInfo[ns.packetIdToSend] and ns.packetIdToSend < packetInfoLength and ns.packetIdToSend >= ns.messageId then
-    local packetIdToSend = ns.packetIdToSend
+        if currentTime - lastPrintTime >= 1 and packetInfo[ns.packetIdToSend] and ns.packetIdToSend < packetInfoLength and ns.packetIdToSend >= ns.messageId then
+            local packetIdToSend = ns.packetIdToSend
 
-    local maxBatchSize = 500  
-    local batchCount = 0
+            local maxBatchSize = 500  
+            local batchCount = 0
 
-    while packetIdToSend < packetInfoLength and batchCount < maxBatchSize do
-        local packet = packetInfo[packetIdToSend]
-        if packet and packet.id and packet.receiveTime and packet.sendTime then
-            packetBuffer[bufferIndex] = 
-                string.format("[Pkt] Id: %d, RX: %s, TX: %s, RLCQ: %d\n", 
-                packet.id, tostring(packet.receiveTime), tostring(packet.sendTime), packet.rlcQueue)
+            while packetIdToSend < packetInfoLength and batchCount < maxBatchSize do
+                local packet = packetInfo[packetIdToSend]
+                if packet and packet.id and packet.receiveTime and packet.sendTime then
+                    packetBuffer[bufferIndex] = 
+                        string.format("[Pkt] Id: %d, RX: %s, TX: %s, RLCQ: %d\n", 
+                        packet.id, tostring(packet.receiveTime), tostring(packet.sendTime), packet.rlcQueue)
 
-            ns.messageId = packet.id
-            packetIdToSend = packetIdToSend + 1
-            bufferIndex = bufferIndex + 1
-            batchCount = batchCount + 1
-        else
-            print("Packet missing required fields for ID: " .. tostring(ns.packetIdToSend))
+                    ns.messageId = packet.id
+                    packetIdToSend = packetIdToSend + 1
+                    bufferIndex = bufferIndex + 1
+                    batchCount = batchCount + 1
+                else
+                    print("Packet missing required fields for ID: " .. tostring(ns.packetIdToSend))
+                end
+            end
+
+            lastPrintTime = currentTime  
+
+            if bufferIndex > 1 then
+                ns.messageToSend = table.concat(packetBuffer, "")  
+                packetBuffer = {}  
+                bufferIndex = 1
+            end
         end
-    end
-
-    lastPrintTime = currentTime  
-
-    if bufferIndex > 1 then
-        ns.messageToSend = table.concat(packetBuffer, "")  
-        packetBuffer = {}  
-        bufferIndex = 1
-    end
-end
-
-
-
 	end
 end
 
@@ -441,5 +439,3 @@ function server(ns)
     server:close()
     print("Server shut down.")
 end
-
-
