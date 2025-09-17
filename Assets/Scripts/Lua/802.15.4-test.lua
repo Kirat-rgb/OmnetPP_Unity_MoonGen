@@ -17,7 +17,7 @@ local socket = require("socket")
 
 local PKT_SIZE	= 60
 
-function configure(parser) --? -J
+function configure(parser)
 	parser:description("Forward traffic between interfaces with moongen rate control")
 	parser:option("-d --dev", "Devices to use, specify the same device twice to echo packets."):args(2):convert(tonumber)
 	parser:option("-r --rate", "Forwarding rates in Mbps (two values for two links)"):args(2):convert(tonumber)
@@ -56,7 +56,7 @@ function master(args)
 
 
 	if qdepth1 < 1 then
-		qdepth1 = math.ceil((args.latency[1] * args.rate[1] * 1000)/672) --? -J
+		qdepth1 = math.ceil((args.latency[1] * args.rate[1] * 1000)/672)
 		if (qdepth1 == 0) then
 			qdepth1 = 1
 		end
@@ -242,7 +242,7 @@ function forward(ring, txQueue, txDev, ns, rate, latency, lossrate, harqLossRate
 
 			--local min_latency_due_to_throughput = (1292 * 8) / throughPutPdcp * tsc_hz_ms
 
-			local min_latency_due_to_throughput = 1 / 67 * tsc_hz --? -J
+			local min_latency_due_to_throughput = 1 / 67 * tsc_hz
 
 			local send_time = arrival_timestamp + (latencyHarq * tsc_hz_ms * retransmissionAttempt)
 			local send_time_limit = last_send_time + min_latency_due_to_throughput
