@@ -51,7 +51,7 @@ public  class GetBLER_TU : MonoBehaviour
 
 
 
-            if (false)
+            /* if (false)
             {
                 double t = (SINR - SINR_15_CQI_TU[CQI - 1, index]) /
                            (SINR_15_CQI_TU[CQI - 1, index + 1] - SINR_15_CQI_TU[CQI - 1, index]);
@@ -70,7 +70,7 @@ public  class GetBLER_TU : MonoBehaviour
                     t);
 
                 BLER = Math.Min(Math.Max(blerInterp, 0.0), 1.0);
-            }
+            } */
 
         }
 
