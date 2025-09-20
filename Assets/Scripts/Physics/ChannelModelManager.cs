@@ -7,7 +7,6 @@ public class ChannelModelManager : MonoBehaviour
     private GameObject[] transmissionList;
     private TransmissionManager[] transmissionManagers;
 
-    public int[] cqi;
     public int[] targetId;
     public UeBase[] ueBases;
 
@@ -17,7 +16,6 @@ public class ChannelModelManager : MonoBehaviour
         transmissionList[0] = transmission;
         transmissionManagers = new TransmissionManager[1];
         transmissionManagers[0] = transmission.GetComponent<TransmissionManager>();
-        cqi = new int[1];
     }
 
     public float timeSinceLastUpdate;
@@ -55,12 +53,10 @@ public class ChannelModelManager : MonoBehaviour
             }
         }
 
-        cqi = new int[connectionNum];
         targetId = new int[connectionNum];
         ueBases = new UeBase[connectionNum];
         for (int i = 0; i < connectionNum; i++)
         {
-            cqi[i] = transmissionManagers[i].GetCqi(ueBase.transmissionParameters[i]);
             targetId[i] = transmissionManagers[i].GetTargetId(ueBase.transmissionParameters[i]);
             ueBases[i] = transmissionManagers[i].GetTargetUe(ueBase.transmissionParameters[i]);
         }
