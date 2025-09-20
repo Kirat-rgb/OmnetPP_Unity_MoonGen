@@ -13,12 +13,9 @@ public class DataRecord
     public double per;
     public int iTbs;
 
-    public DataRecord(float time, float throughputValue, double perValue, int tbsIndex)
+    public DataRecord(float time)
     {
         t = time;
-        throughput = throughputValue;
-        per = perValue;
-        iTbs = tbsIndex;
     }
 }
 
@@ -30,8 +27,6 @@ public class DataRecorder : MonoBehaviour
     private bool isRecording = false;
 
     private List<DataRecord> recordedData = new List<DataRecord>();
-    public MCS_Test mcs;
-    public LteHARQ harq;
 
     public InputFieldManager intervalInput;
     public InputFieldManager durationInput;
@@ -52,9 +47,6 @@ public class DataRecorder : MonoBehaviour
 
 
         showElapesdTime.text = elapsedTime.ToString("000.0");
-        if (mcs != null) showPkts.text = mcs.pkts.ToString("0.0");
-        if (harq != null) showPER.text = harq.per.ToString("0.000");
-        if (mcs != null) showITBS.text = mcs.iTbs.ToString("0");
         recordInterval = intervalInput.inputNumber;
         recordDuration = durationInput.inputNumber;
         
@@ -69,7 +61,7 @@ public class DataRecorder : MonoBehaviour
         while (Time.time - startTime < recordDuration)
         {
             elapsedTime = Time.time - startTime; 
-            recordedData.Add(new DataRecord(elapsedTime, mcs.pkts, harq.per, mcs.iTbs));
+            recordedData.Add(new DataRecord(elapsedTime));
 
             yield return new WaitForSeconds(recordInterval); 
         }

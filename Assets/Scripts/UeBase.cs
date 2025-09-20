@@ -43,8 +43,6 @@ public class UeBase : MonoBehaviour
     public TransmissionParameter[] transmissionParameters;
     public UeBase[] ueBases;
 
-    public UeExtraModuleManager extraModule;
-
     public float maxD2D_ConnectionDistance = 300;
     public int maxD2D_ConnectionNum = 4;
 

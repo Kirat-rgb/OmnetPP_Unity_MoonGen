@@ -1,4 +1,4 @@
-using System;
+/* using System;
 using UnityEngine;
 
 public class PisaData : MonoBehaviour
@@ -7,13 +7,13 @@ public class PisaData : MonoBehaviour
     private double[] channel_ = new double[10000]; 
     //private int blerShift_ = 5; 
     private System.Random rng = new System.Random();
-    public GetBLER_TU getBler;
+    public GetBER getBer;
 
     public PisaData()
     {
         //Array.Copy(BlerCurvesData.BlerCurvesNew, blerCurves_, BlerCurvesData.BlerCurvesNew.Length);
 
-        blerCurves_ = BlerCurvesData.BlerCurvesNew;
+        berCurves = BerCurvesData.BerCurvesNew;
 
         for (int i = 0; i < 1000; i++)
         {
@@ -45,7 +45,7 @@ public class PisaData : MonoBehaviour
         return getBler.GetBLER(k + blerShift_, j);
     } */
 
-    public double GetBer(double snr, int cqi)
+    /* public double GetBer(double snr, int cqi)
     {
         return getBler.GetBLER(snr + blerShift_, cqi);
     }
@@ -61,4 +61,4 @@ public class PisaData : MonoBehaviour
     }
 
     public int nMcs() { return 15; }
-}
+}  */
