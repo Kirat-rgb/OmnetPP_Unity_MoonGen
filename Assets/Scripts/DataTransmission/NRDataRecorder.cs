@@ -13,12 +13,9 @@ public class NRDataRecord
     public double per;
     public int iTbs;
 
-    public NRDataRecord(float time, float throughputValue, double perValue, int tbsIndex)
+    public NRDataRecord(float time)
     {
         t = time;
-        throughput = throughputValue;
-        per = perValue;
-        iTbs = tbsIndex;
     }
 }
 
@@ -30,8 +27,6 @@ public class NRDataRecorder : MonoBehaviour
     private bool isRecording = false;
 
     private List<NRDataRecord> recordedData = new List<NRDataRecord>();
-    public NRHARQ harq;
-    public NRMCS_Test mcs;
 
     public InputFieldManager intervalInput;
     public InputFieldManager durationInput;
@@ -52,9 +47,6 @@ public class NRDataRecorder : MonoBehaviour
 
 
         showElapesdTime.text = elapsedTime.ToString("000.0");
-        if (mcs != null) showPkts.text = mcs.pkts.ToString("0.0");
-        if (harq != null) showPER.text = harq.per.ToString("0.000");
-        //if (mcs != null) showITBS.text = mcs.iTbs.ToString("0");
         recordInterval = intervalInput.inputNumber;
         recordDuration = durationInput.inputNumber;
         
@@ -69,7 +61,7 @@ public class NRDataRecorder : MonoBehaviour
         while (Time.time - startTime < recordDuration)
         {
             elapsedTime = Time.time - startTime; 
-            recordedData.Add(new NRDataRecord(elapsedTime, mcs.pkts, harq.per, 0));
+            recordedData.Add(new NRDataRecord(elapsedTime));
 
             yield return new WaitForSeconds(recordInterval); 
         }
