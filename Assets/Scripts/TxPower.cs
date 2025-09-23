@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO; // ÒýÈëÎÄ¼þ²Ù×÷ÃüÃû¿Õ¼ä
+using System.IO; // ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¼ï¿½
 
 public class TxPower : MonoBehaviour
 {
@@ -10,14 +10,10 @@ public class TxPower : MonoBehaviour
     public double uePowerFactor = 1;
     public double eNodeBtxPower = 40;
     public double eNodeBtxPowerFactor = 1;
-    private string filePath = "C:\\Users\\Bude\\simu5g\\omnetpp-6.0.3-windows-x86_64\\omnetpp-6.0.3\\samples\\test_5g\\src\\udtest\\powertest.txt"; 
 
     void Start()
     {
-        if (!File.Exists(filePath))
-        {
-            File.WriteAllText(filePath, ""); 
-        }
+        
     }
 
     void Update()
@@ -42,6 +38,6 @@ public class TxPower : MonoBehaviour
 
     void LogResultToFile(double result)
     {
-        File.WriteAllText(filePath, result.ToString()); 
+        
     }
 }

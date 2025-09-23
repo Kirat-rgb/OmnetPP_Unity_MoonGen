@@ -51,6 +51,10 @@ public class JsonToLua : MonoBehaviour
 
     string ConvertToLua(Dictionary<string, object> data)
     {
+        if (data == null)
+        {
+            return "";
+        }
         System.Text.StringBuilder luaString = new System.Text.StringBuilder();
         luaString.Append("{");
         foreach (var kvp in data)
