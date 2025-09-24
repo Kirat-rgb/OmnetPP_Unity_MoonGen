@@ -1,4 +1,4 @@
-/* using UnityEngine;
+using UnityEngine;
 
 public class UeParameters : MonoBehaviour
 {
@@ -14,4 +14,3 @@ public class UeParameters : MonoBehaviour
     public int numPRBs = 1;
     public int numLayers = 1;
 }
- */

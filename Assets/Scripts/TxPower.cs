@@ -6,8 +6,8 @@ using System.IO; // �����ļ����������ռ�
 public class TxPower : MonoBehaviour
 {
     public LOS_Ray line;
-    public double ffdPower = 26;
-    public double ffdPowerFactor = 1;
+    public double uePower = 26;
+    public double uePowerFactor = 1;
     public double eNodeBtxPower = 40;
     public double eNodeBtxPowerFactor = 1;
 
@@ -22,16 +22,16 @@ public class TxPower : MonoBehaviour
         {
             if (line.collision)
             {
-                ffdPowerFactor = 0.05;
+                uePowerFactor = 0.05;
                 eNodeBtxPowerFactor = 0.05;
             }
             else
             {
-                ffdPowerFactor = 1;
+                uePowerFactor = 1;
                 eNodeBtxPowerFactor = 1;
             }
 
-            double result = ffdPower * ffdPowerFactor; 
+            double result = uePower * uePowerFactor; 
             LogResultToFile(result); 
         }
     }

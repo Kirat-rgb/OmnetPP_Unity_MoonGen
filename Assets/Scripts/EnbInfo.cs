@@ -15,4 +15,5 @@ public class EnbInfo : MonoBehaviour
         enbMobiltiyLocal = transform.localPosition;
         enbMobilityInfo = enbId.ToString() + ": " + Math.Round(enbMobiltiyLocal.x, 1) + " " + -Math.Round(enbMobiltiyLocal.z, 1) + " " + Math.Round(enbMobiltiyLocal.y, 1);
     }
+
 }

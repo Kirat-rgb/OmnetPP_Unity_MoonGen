@@ -42,8 +42,8 @@ public class UeSpawner : MonoBehaviour
 
             ueInstance.name = "Ue_" + (currentSpawnCount+2049);
             GameObject ueChild = ueInstance.transform.Find("Ue")?.gameObject;
-            FFDBase ffdBase = ueChild.GetComponent<FFDBase>();
-            ffdBase.FFDId = currentSpawnCount + 2049;
+            UeBase ueBase = ueChild.GetComponent<UeBase>();
+            ueBase.ueId = currentSpawnCount + 2049;
             yield return null;
 
 
