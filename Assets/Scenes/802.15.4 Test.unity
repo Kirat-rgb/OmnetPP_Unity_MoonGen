@@ -2191,7 +2191,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 119713919347977941, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
       propertyPath: sshHost
-      value: pc87.filab.uni-hannover.de
+      value: pc88.filab.uni-hannover.de
       objectReference: {fileID: 0}
     - target: {fileID: 119713919347977941, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
       propertyPath: sshPath
@@ -2203,7 +2203,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 119713919347977941, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
       propertyPath: privateKeyPath
-      value: '"C:\Users\joshu\.ssh\PuttyPrivateKey.ppk"'
+      value: '"C:\Users\joshu\.ssh\UnityTestPrivate.ppk"'
       objectReference: {fileID: 0}
     - target: {fileID: 950936349985577155, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
@@ -2211,7 +2211,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1076537926187352819, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
       propertyPath: sshHost
-      value: pc88.filab.uni-hannover.de
+      value: pc89.filab.uni-hannover.de
       objectReference: {fileID: 0}
     - target: {fileID: 1076537926187352819, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
       propertyPath: sshPath
@@ -2223,7 +2223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1076537926187352819, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
       propertyPath: privateKeyPath
-      value: '"C:\Users\joshu\.ssh\PuttyPrivateKey.ppk"'
+      value: '"C:\Users\joshu\.ssh\UnityTestPrivate.ppk"'
       objectReference: {fileID: 0}
     - target: {fileID: 1377600171842336565, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
       propertyPath: enterMoonGenDirectory
@@ -2259,11 +2259,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2208880993162916897, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
       propertyPath: sshUser
-      value: joshu
+      value: Joshua
       objectReference: {fileID: 0}
     - target: {fileID: 2208880993162916897, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
       propertyPath: privateKeyPath
-      value: '"C:\Users\joshu\.ssh\PuttyPrivateKey.ppk"'
+      value: '"C:\Users\joshu\.ssh\UnityTestPrivate.ppk"'
       objectReference: {fileID: 0}
     - target: {fileID: 3318199645318869169, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4253,10 +4253,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba7ac32eb9c1d6946944a6307beec343, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 0}
-  filePath: C:\Users\Bude\simu5g\omnetpp-6.0.3-windows-x86_64\omnetpp-6.0.3\samples\test_5g\src\udtest\test.txt
-  timeSinceLastUpdate: 0
-  updateInterval: 0.2
 --- !u!1 &820845868
 GameObject:
   m_ObjectHideFlags: 0
@@ -6971,10 +6967,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56df8b1a6d26e4f42bf45f443377b3c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ueTxPowerText: {fileID: 1069804536}
-  MacLayerDelayText: {fileID: 836007893}
-  SMMacLayerDelay: {fileID: 1688173331}
-  SharedMemoryReader: {fileID: 1686190379}
+  currentBER: {fileID: 0}
+  throughput: {fileID: 0}
   timeSinceLastUpdate: 0
   updateInterval: 0.2
 --- !u!114 &1316957155
@@ -8353,8 +8347,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66d5ad85fb1bf8a45878ce05efc01821, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: 
-  timeSinceLastUpdate: 0
 --- !u!114 &1686190380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8367,8 +8359,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb3861755d569b4b82bf06d4505622b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TxPower: {fileID: 288128548}
-  UeManager: {fileID: 1471452497}
 --- !u!114 &1686190381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8381,8 +8371,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f46c39e6347f0041a617314cd57177c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UeManager: {fileID: 1471452497}
-  enbInfo: {fileID: 87149800}
 --- !u!1 &1688173330
 GameObject:
   m_ObjectHideFlags: 0

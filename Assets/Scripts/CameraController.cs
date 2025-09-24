@@ -14,9 +14,9 @@ public class CameraController : MonoBehaviour
 
 
 
-    [Header("旋转中心目标物体")][SerializeField] private GameObject _target;
-    [Header("拖动灵敏度")][SerializeField] private float _sensitivity = 2.0f;
-    [Header("移动速度")][SerializeField] private float _speed = 0.1f;
+    [Header("Rotation centrum")][SerializeField] private GameObject _target;
+    [Header("Sensitivity")][SerializeField] private float _sensitivity = 2.0f;
+    [Header("Movement speed")][SerializeField] private float _speed = 0.1f;
 
     private Vector3 movement;
 

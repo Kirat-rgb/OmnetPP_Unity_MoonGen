@@ -98,6 +98,7 @@ public class UeBase : MonoBehaviour
 
     }
 
+    //reuse as peer-to-peer
     void updateTransmissionParameterD2D(UeBase[] ueBases)
     {
         for (int i = 0; i < transmissionParameters.Length; i++)
@@ -154,5 +155,4 @@ public class UeBase : MonoBehaviour
             .Take(maxD2D_ConnectionNum)
             .ToArray();
     }
-
 }

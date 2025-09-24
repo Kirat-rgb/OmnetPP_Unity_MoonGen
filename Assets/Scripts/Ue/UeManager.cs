@@ -4,26 +4,26 @@ using System.Collections;
 
 public class UeManager : MonoBehaviour
 {
-    private GameObject[] ueObjects;
+    //private GameObject[] ueObjects;
     public string ulInfo = "";
     public string dlInfo = "";
     public string mobilityInfo = "";
     public UeBase ueSelect = null;
 
-    void Start()
+    /* void Start()
     {
         StartCoroutine(FindUe());
         ueObjects = GameObject.FindGameObjectsWithTag("Ue");
         
-    }
+    } */
 
-    private IEnumerator FindUe()
+    /* private IEnumerator FindUe()
     {
         yield return new WaitForSeconds(2f);
         GameObject[] ueObjects = GameObject.FindGameObjectsWithTag("Ue");
-    }
+    } */
 
-        private void Update()
+    private void Update()
     {
         ueSelect = null;
 

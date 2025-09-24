@@ -32,12 +32,12 @@ public class TxPower : MonoBehaviour
             }
 
             double result = uePower * uePowerFactor; 
-            LogResultToFile(result); 
+            //LogResultToFile(result); 
         }
     }
 
-    void LogResultToFile(double result)
+    /* void LogResultToFile(double result)
     {
         
-    }
+    } */
 }

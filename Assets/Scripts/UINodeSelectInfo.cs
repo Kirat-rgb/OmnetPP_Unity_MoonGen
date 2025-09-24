@@ -12,11 +12,10 @@ public class UINodeSelectInfo : MonoBehaviour
     public TextMeshProUGUI nodeInfoDisplay;
     public GameObject display;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    /* void Start()
     {
         
-    }
+    } */
 
     // Update is called once per frame
     void Update()

@@ -10,10 +10,10 @@ public class PlinkSSHTMUX : MonoBehaviour
 
     public InputCommand inputCommand;
 
-    public string sshPath = "\"C:\\Users\\Bude\\Emulator Test\\Assets\\plink.exe\"";
-    public string privateKeyPath = "\"C:\\Users\\Bude\\.ssh\\id_rsa_putty.ppk\"";
-    public string sshUser = "Nairong";
-    public string sshHost = "pc32.filab.uni-hannover.de";
+    public string sshPath = "\"C:\\Users\\joshu\\Documents\\GitHub\\OmnetPP_Unity_MoonGen\\Assets\\plink.exe\"";
+    public string privateKeyPath = "\"C:\\Users\\joshu\\.ssh\\UnityTestPrivate.ppk\"";
+    public string sshUser = "Joshua";
+    public string sshHost = "pc89.filab.uni-hannover.de";
     public string tmuxSessionName = "unity_tmux_session";
 
     void Start()

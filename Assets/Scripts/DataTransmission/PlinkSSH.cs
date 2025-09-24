@@ -13,10 +13,10 @@ public class PlinkSSH : MonoBehaviour
     public MessageLogger messageLogger;
     public MGMessageManager messageManager;
 
-    public string sshPath = "\"C:\\Users\\Bude\\Emulator Test\\Assets\\plink.exe\"";
-    public string privateKeyPath = "\"C:\\Users\\Bude\\.ssh\\id_rsa_putty.ppk\"";
-    public string sshUser = "Nairong";
-    public string sshHost = "pc32.filab.uni-hannover.de";
+    public string sshPath = "\"C:\\Users\\joshu\\Documents\\GitHub\\OmnetPP_Unity_MoonGen\\Assets\\plink.exe\"";
+    public string privateKeyPath = "\"C:\\Users\\joshu\\.ssh\\UnityTestPrivate.ppk\"";
+    public string sshUser = "Joshua";
+    public string sshHost = "pc89.filab.uni-hannover.de";
 
     public bool enterMoonGenDirectory = false;
     private ConcurrentQueue<string> logQueue = new ConcurrentQueue<string>();

@@ -1,4 +1,4 @@
-using System;
+/* using System;
 using System.Diagnostics;
 using System.IO;
 using UnityEngine;
@@ -78,7 +78,7 @@ while ($true) {{
 
     private void PowerShellCommand(string command)
     {
-        // ÏòÃüÁîÎÄ¼şÖĞĞ´ÈëÃüÁî
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Ğ´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (File.Exists(commandFilePath))
         {
             File.AppendAllText(commandFilePath, command + System.Environment.NewLine);
@@ -104,3 +104,4 @@ while ($true) {{
         PowerShellCommand(SSH);
     }
 }
+ */
