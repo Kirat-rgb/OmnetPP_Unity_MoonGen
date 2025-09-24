@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class ChannelModelManager : MonoBehaviour
 {
-    public UeBase ueBase;
+    public FFDBase ffdBase;
     public GameObject transmission;
     private GameObject[] transmissionList;
     private TransmissionManager[] transmissionManagers;
 
     public int[] targetId;
-    public UeBase[] ueBases;
+    public FFDBase[] ueBases;
 
     void Start()
     {
@@ -34,7 +34,7 @@ public class ChannelModelManager : MonoBehaviour
 
     void CustomUpdate()
     {
-        int connectionNum = ueBase.transmissionParameters.Length;
+        int connectionNum = ffdBase.transmissionParameters.Length;
 
         //Debug.Log("connectionNum: " + connectionNum);
 
@@ -54,11 +54,11 @@ public class ChannelModelManager : MonoBehaviour
         }
 
         targetId = new int[connectionNum];
-        ueBases = new UeBase[connectionNum];
+        ueBases = new FFDBase[connectionNum];
         for (int i = 0; i < connectionNum; i++)
         {
-            targetId[i] = transmissionManagers[i].GetTargetId(ueBase.transmissionParameters[i]);
-            ueBases[i] = transmissionManagers[i].GetTargetUe(ueBase.transmissionParameters[i]);
+            targetId[i] = transmissionManagers[i].GetTargetId(ffdBase.transmissionParameters[i]);
+            ueBases[i] = transmissionManagers[i].GetTargetUe(ffdBase.transmissionParameters[i]);
         }
     }
 }

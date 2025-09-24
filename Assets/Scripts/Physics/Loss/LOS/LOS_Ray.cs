@@ -21,7 +21,7 @@ public class LOS_Ray : MonoBehaviour
 
 
     public DielectricObstacleLoss DielectricObstacleLoss;
-    public UeBase UeBase;
+    public FFDBase FFDBase;
 
     public double totalLossForward;
     public double totalLossReverse;
@@ -45,18 +45,16 @@ public class LOS_Ray : MonoBehaviour
     void Update()
     {
 
-        
-
-            if (collision)
-            {
-                UpdateLinePosition(lineRendererR, start, end);
-                UpdateLinePosition(lineRendererG, Vector3.zero, Vector3.zero);
-            }
-            else
-            {
-                UpdateLinePosition(lineRendererG, start, end);
-                UpdateLinePosition(lineRendererR, Vector3.zero, Vector3.zero);
-            }
+        if (collision)
+        {
+            UpdateLinePosition(lineRendererR, start, end);
+            UpdateLinePosition(lineRendererG, Vector3.zero, Vector3.zero);
+        }
+        else
+        {
+            UpdateLinePosition(lineRendererG, start, end);
+            UpdateLinePosition(lineRendererR, Vector3.zero, Vector3.zero);
+        }
         IdleDetection();
     }
 
@@ -132,7 +130,7 @@ public class LOS_Ray : MonoBehaviour
             if (hitForward[i].collider != null)
             {
                 Collider obstacleHit = hitForward[i].collider;
-                totalLossForward *= DielectricObstacleLoss.ComputeObjectLoss(obstacleHit, UeBase.ueParameters.frequency, start, end);
+                totalLossForward *= DielectricObstacleLoss.ComputeObjectLoss(obstacleHit, FFDBase.ffdParameters.frequency, start, end);
                 totalLossForwardInDB = PowerCalculator.linearToDb(totalLossForward);
             }
         }
@@ -146,7 +144,7 @@ public class LOS_Ray : MonoBehaviour
             if (hitReverse[i].collider != null)
             {
                 Collider obstacleHit = hitReverse[i].collider;           
-                totalLossReverse *= DielectricObstacleLoss.ComputeObjectLoss(obstacleHit, UeBase.ueParameters.frequency, end, start);
+                totalLossReverse *= DielectricObstacleLoss.ComputeObjectLoss(obstacleHit, FFDBase.ffdParameters.frequency, end, start);
                 totalLossReverseInDB = PowerCalculator.linearToDb(totalLossReverse);
             }
         }

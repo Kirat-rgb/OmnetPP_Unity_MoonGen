@@ -6,8 +6,8 @@ using System;
 
 public class UINodeSelectInfo : MonoBehaviour
 {
-    public UeManager ueManager;
-    private UeBase selectUe;
+    public FFDManager ffdManager;
+    private FFDBase selectFFD;
     public string displayInfo;
     public TextMeshProUGUI nodeInfoDisplay;
     public GameObject display;
@@ -21,25 +21,25 @@ public class UINodeSelectInfo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        selectUe = null;
+        selectFFD = null;
         displayInfo = string.Empty;
         display.SetActive(false);
-        if (ueManager.ueSelect != null) 
+        if (ffdManager.ffdSelect != null) 
         {
             display.SetActive(true);
-            selectUe = ueManager.ueSelect;
+            selectFFD = ffdManager.ffdSelect;
             displayInfo =
                             "<b>Nodetype:</b> Ue\n" +
-                            "<b>NodeId:</b> " + selectUe.ueId + "\n" +
+                            "<b>NodeId:</b> " + selectFFD.FFDId + "\n" +
                             "<b>Position:</b> " +
-                                Math.Round(selectUe.prefabPosition.x, 1) + " " +
-                                -Math.Round(selectUe.prefabPosition.z, 1) + " " +
-                                Math.Round(selectUe.prefabPosition.y, 1) + "\n" +
-                            "<b>TxPower:</b> " + Math.Round(selectUe.txPowerUl, 1) + "dBm" + "\n" + 
-                            "<b>Upload:</b> " + selectUe.ueId + "->" + selectUe.TargetEnb.enbId +
-                                " TxPower: " + Math.Round(selectUe.txPowerUl, 1) + "dBm" + " Loss: " + Math.Round(selectUe.LOS_Ray.GetLosLoss(true, selectUe.transmissionParameters[0]),1) + "dBm" + "\n" +
-                            "<b>Download:</b> " + selectUe.TargetEnb.enbId + "->" + selectUe.ueId +
-                                " TxPower: " + Math.Round(selectUe.txPowerDl, 1) + "dBm" + " Loss " + Math.Round(selectUe.LOS_Ray.GetLosLoss(false, selectUe.transmissionParameters[0]), 1) + "dBm" + "\n";
+                                Math.Round(selectFFD.prefabPosition.x, 1) + " " +
+                                -Math.Round(selectFFD.prefabPosition.z, 1) + " " +
+                                Math.Round(selectFFD.prefabPosition.y, 1) + "\n" +
+                            "<b>TxPower:</b> " + Math.Round(selectFFD.txPowerUl, 1) + "dBm" + "\n" + 
+                            "<b>Upload:</b> " + selectFFD.FFDId + "->" + selectFFD.TargetEnb.enbId +
+                                " TxPower: " + Math.Round(selectFFD.txPowerUl, 1) + "dBm" + " Loss: " + Math.Round(selectFFD.LOS_Ray.GetLosLoss(true, selectFFD.transmissionParameters[0]),1) + "dBm" + "\n" +
+                            "<b>Download:</b> " + selectFFD.TargetEnb.enbId + "->" + selectFFD.FFDId +
+                                " TxPower: " + Math.Round(selectFFD.txPowerDl, 1) + "dBm" + " Loss " + Math.Round(selectFFD.LOS_Ray.GetLosLoss(false, selectFFD.transmissionParameters[0]), 1) + "dBm" + "\n";
             nodeInfoDisplay.text = displayInfo;
         }
     }

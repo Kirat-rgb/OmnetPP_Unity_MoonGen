@@ -10,8 +10,8 @@ public class TransmissionManager : MonoBehaviour
         return targetId;
     }
 
-    public UeBase GetTargetUe(TransmissionParameter parameter) 
+    public FFDBase GetTargetUe(TransmissionParameter parameter) 
     {
-        return parameter.targetUeBase;
+        return parameter.targetFFDBase;
     }
 }

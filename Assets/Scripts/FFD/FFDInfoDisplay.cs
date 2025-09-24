@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class UeInfoDisplay : MonoBehaviour
+public class FFDInfoDisplay : MonoBehaviour
 {
 
-    public TextMeshProUGUI ueInfoDisplay;
-    public UeBase UeBase;
+    public TextMeshProUGUI ffdInfoDisplay;
+    public FFDBase ffdBase;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,8 +17,8 @@ public class UeInfoDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ueInfoDisplay.text = "Ue_" + UeBase.ueId.ToString() + "\n"
-                            + UeBase.ulInfo + "\n"
-                            + UeBase.dlInfo;
+        ffdInfoDisplay.text = "Ue_" + ffdBase.FFDId.ToString() + "\n"
+                            + ffdBase.ulInfo + "\n"
+                            + ffdBase.dlInfo;
     }
 }

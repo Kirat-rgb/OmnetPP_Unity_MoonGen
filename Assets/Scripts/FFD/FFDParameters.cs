@@ -1,9 +1,9 @@
-/* using UnityEngine;
+using UnityEngine;
 
-public class UeParameters : MonoBehaviour
+public class FFDParameters : MonoBehaviour
 {
     public double txPower = 26;
-    public float frequency = 2000000000;
+    public float frequency = 2000000000; //240000000
 
     public double noiseFigure = 5.0;
     public double thermalNoise = -104;
@@ -14,4 +14,3 @@ public class UeParameters : MonoBehaviour
     public int numPRBs = 1;
     public int numLayers = 1;
 }
- */
