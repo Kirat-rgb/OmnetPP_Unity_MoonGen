@@ -57,6 +57,7 @@ public class ChannelModelManager : MonoBehaviour
         ueBases = new UeBase[connectionNum];
         for (int i = 0; i < connectionNum; i++)
         {
+            transmissionManagers[i].GetBER(ueBase.transmissionParameters[i]);
             targetId[i] = transmissionManagers[i].GetTargetId(ueBase.transmissionParameters[i]);
             ueBases[i] = transmissionManagers[i].GetTargetUe(ueBase.transmissionParameters[i]);
         }

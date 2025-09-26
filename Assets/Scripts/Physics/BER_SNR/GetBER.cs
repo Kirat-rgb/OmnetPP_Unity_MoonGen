@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using static TransmissionParameterManager;
 
 public class GetBER : MonoBehaviour
 {
@@ -17,9 +18,10 @@ public class GetBER : MonoBehaviour
     }
 
 
-    public double getBER()
+    public double getBER(TransmissionParameter parameter)
     {
         snrv.Clear();
+        snrv = lteSINR.GetSINR(true, parameter);
         meanSNR = MeanSnr(snrv);
         int closestSNR = 0;
         double difference = Math.Abs(meanSNR - BERCurveSNR[closestSNR]);
@@ -35,7 +37,8 @@ public class GetBER : MonoBehaviour
 
         double BER = BERCurveBER[closestSNR];
 
-
+        Debug.Log("Current meanSNR value: " + meanSNR);
+        Debug.Log("Current BER value: " + BER);
         return BER;
     }
     
