@@ -10,8 +10,9 @@ public class JSONWriter : MonoBehaviour
     private float lastUpdateTime;
     private float updateInterval = 1f;
 
-    public InputFieldManager inputHARQLossRate;
-    public InputFieldManager inputPDCPThroughput;
+    /* public InputFieldManager inputHARQLossRate;
+    public InputFieldManager inputPDCPThroughput; */
+    public InputFieldManager inputBERValue;
 
     public string jsonData;
     public bool writeJsonToLocal = true;
@@ -34,8 +35,9 @@ public class JSONWriter : MonoBehaviour
     {
         EmulationData emulationData = new EmulationData
         {
-            HARQ_loss_rate = inputHARQLossRate.inputNumber,
-            PDCP_throughput = inputPDCPThroughput.inputNumber
+            bit_error_rate = inputBERValue.inputNumber
+            /* HARQ_loss_rate = inputHARQLossRate.inputNumber,
+            PDCP_throughput = inputPDCPThroughput.inputNumber */
         };
 
         string json = JsonConvert.SerializeObject(emulationData, Formatting.Indented);
@@ -64,6 +66,5 @@ public class JSONWriter : MonoBehaviour
 [System.Serializable]
 public class EmulationData
 {
-    public float HARQ_loss_rate;
-    public float PDCP_throughput;
+    public float bit_error_rate;
 }

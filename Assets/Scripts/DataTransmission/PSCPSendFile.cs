@@ -4,11 +4,11 @@ using System.Threading.Tasks;
 
 public class PSCPSendFile : MonoBehaviour
 {
-    public string privateKeyPath = "\"C:\\Users\\Bude\\.ssh\\id_rsa_putty.ppk\"";
-    public string pscpPath = "C:\\Users\\Bude\\Emulator Test\\Assets\\pscp.exe";
+    public string privateKeyPath = "\"C:\\Users\\joshu\\.ssh\\UnityTestPrivate.ppk\"";
+    public string pscpPath = "C:\\Users\\joshu\\Documents\\GitHub\\OmnetPP_Unity_MoonGen\\Assets";
     //public string localFilePath = @"C:\Users\Bude\Emulator Test\Assets\StreamingAssets\emulation_data_throughput.lua";
-    public string sshUser = "Nairong";
-    public string sshHost = "pc7.filab.uni-hannover.de";
+    public string sshUser = "Joshua";
+    public string sshHost = "pc89.filab.uni-hannover.de";
     public string remoteFilePath = "/mnt/";
 
 

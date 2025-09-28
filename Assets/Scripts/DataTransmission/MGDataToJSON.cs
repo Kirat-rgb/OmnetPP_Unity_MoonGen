@@ -10,13 +10,13 @@ public class MGDataToJSON : MonoBehaviour
 
     public void SaveAllJson()
     {
-        ThroughputJson();
+        /* ThroughputJson(); */
         LatencyJson();
         PktJson();
-        RlcQueueJson();
+        /* RlcQueueJson() */;
     }
 
-    public void ThroughputJson()
+    /* public void ThroughputJson()
     {
         List<pdcpThroughput> pdcpData = messageManager.GetPdcpThroughputs();
 
@@ -38,7 +38,7 @@ public class MGDataToJSON : MonoBehaviour
 
         File.WriteAllText(filePath, json);
         Debug.Log("JSON saved to: " + filePath);
-    }
+    } */
     public void LatencyJson()
     {
         List<latencyTotal> latencyData = messageManager.GetLatencyTotalInfo();
@@ -83,7 +83,7 @@ public class MGDataToJSON : MonoBehaviour
         Debug.Log("JSON saved to: " + filePath);
     }
 
-    public void RlcQueueJson()
+    /* public void RlcQueueJson()
     {
         List<rlcQueue> RlcQueue = messageManager.getRlcQueueBase();
 
@@ -99,5 +99,5 @@ public class MGDataToJSON : MonoBehaviour
 
         File.WriteAllText(filePath, json);
         Debug.Log("JSON saved to: " + filePath);
-    }
+    } */
 }

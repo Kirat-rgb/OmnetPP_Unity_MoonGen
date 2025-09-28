@@ -176,11 +176,11 @@ function forward(ring, txQueue, txDev, ns, rate, latency, lossrate, harqLossRate
 	local linkspeed = txDev:getLinkStatus().speed
 	print("linkspeed = "..linkspeed)
 
-	local tsc_hz = libmoon:getCyclesFrequency() --? -J
+	local tsc_hz = libmoon:getCyclesFrequency()
 	local tsc_hz_ms = tsc_hz / 1000
 	print("tsc_hz = "..tsc_hz)
 
-	local packetInfo = {} --? -J
+	local packetInfo = {}
 	local packetInfoLength = 0
 
 	ns.messageToSend = nil

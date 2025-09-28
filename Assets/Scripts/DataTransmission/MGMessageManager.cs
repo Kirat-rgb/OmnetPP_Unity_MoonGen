@@ -8,22 +8,20 @@ using static MGData;
 public class MGMessageManager : MonoBehaviour
 {
     private List<pkt> pktInfo = new List<pkt>();
-    private List<rlcQueue> rlcQueueBase = new List<rlcQueue>();
-    private List<rlcLoss> rlcLossInfo = new List<rlcLoss>();
-    private List<pdcpThroughput> pdcpThroughputInfo = new List<pdcpThroughput>();
+    /* private List<pdcpThroughput> pdcpThroughputInfo = new List<pdcpThroughput>(); */
     private List<latencyTotal> latencyTotalInfo = new List<latencyTotal>();
 
 
     private int queueMaxTemp;
 
     public List<pkt> getPktInfo () { return pktInfo; }
-    public List<rlcQueue> getRlcQueueBase () {  return rlcQueueBase; }
+    /* public List<rlcQueue> getRlcQueueBase () {  return rlcQueueBase; }
     public List<rlcLoss> getRlcLossInfo () { return rlcLossInfo; }
     public List<pdcpThroughput> GetPdcpThroughputs () 
     { 
         CalculateThroughputPerInterval();
         return pdcpThroughputInfo; 
-    }
+    } */
 
     public List <latencyTotal> GetLatencyTotalInfo () 
     {  
@@ -32,7 +30,7 @@ public class MGMessageManager : MonoBehaviour
     }
 
 
-    public void HandlePktMessage(string message)
+   /*  public void HandlePktMessage(string message)
     {
         Regex pktRegex = new Regex(@"\[Pkt\] Id: (\d+), RX: (\d+)ULL, TX: (\d+)ULL, RLCQ: (\d+)");
         Match match = pktRegex.Match(message);
@@ -71,9 +69,9 @@ public class MGMessageManager : MonoBehaviour
         {
             Debug.LogError($"Failed to parse Pkt message: {message}");
         }
-    }
+    } */
 
-    public void HandleRlcMessage(string message)
+    /* public void HandleRlcMessage(string message)
     {
         Regex rlcRegex = new Regex(@"\[RLC\] T: (\d+)ULL, Loss: (\d+), Queue: (\d+), of (\d+)");
         Match match = rlcRegex.Match(message);
@@ -103,10 +101,10 @@ public class MGMessageManager : MonoBehaviour
         {
             Debug.LogError($"Failed to parse RLC message: {message}");
         }
-    }
+    } */
 
 
-    public void CalculateThroughputPerInterval()
+    /* public void CalculateThroughputPerInterval()
     {
         var sortedPkts = pktInfo
             .Where(pkt => pkt.txTime != "Loss")
@@ -144,7 +142,7 @@ public class MGMessageManager : MonoBehaviour
                 throughput = entry.Value
             });
         }
-    }
+    } */
 
 
     public void CalculateLatencyByInterval()

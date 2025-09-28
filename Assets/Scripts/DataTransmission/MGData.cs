@@ -10,7 +10,7 @@ public static class MGData
         public string txTime;
     }
 
-    public class rlcQueue
+    /* public class rlcQueue
     {
         public string time;
         public int queue;
@@ -20,13 +20,13 @@ public static class MGData
     {
         public string time;
         public int loss;
-    }
+    } */
 
-    public class pdcpThroughput
+    /* public class pdcpThroughput
     {
         public string time;
         public float throughput;
-    }
+    } */
     public class latencyTotal
     {
         public string time;

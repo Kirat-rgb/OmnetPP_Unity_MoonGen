@@ -8,14 +8,13 @@ using TMPro;
 [System.Serializable]
 public class NRDataRecord
 {
-    public float t;  
-    public float throughput;
-    public double per;
-    public int iTbs;
+    public float t;
+    public double b;
 
-    public NRDataRecord(float time)
+    public NRDataRecord(float time, double ber)
     {
         t = time;
+        b = ber;
     }
 }
 
@@ -27,6 +26,8 @@ public class NRDataRecorder : MonoBehaviour
     private bool isRecording = false;
 
     private List<NRDataRecord> recordedData = new List<NRDataRecord>();
+    public UeBase ueBase;
+    public TransmissionManager transmissionManager;
 
     public InputFieldManager intervalInput;
     public InputFieldManager durationInput;
@@ -56,14 +57,14 @@ public class NRDataRecorder : MonoBehaviour
     {
         isRecording = true;
         recordedData.Clear();
-        float startTime = Time.time; 
+        float startTime = Time.time;
 
         while (Time.time - startTime < recordDuration)
         {
-            elapsedTime = Time.time - startTime; 
-            recordedData.Add(new NRDataRecord(elapsedTime));
+            elapsedTime = Time.time - startTime;
+            recordedData.Add(new NRDataRecord(elapsedTime, transmissionManager.GetBER(ueBase.transmissionParameters[0])));
 
-            yield return new WaitForSeconds(recordInterval); 
+            yield return new WaitForSeconds(recordInterval);
         }
 
         Debug.Log("Recording finished!");

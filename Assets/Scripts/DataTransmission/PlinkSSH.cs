@@ -36,7 +36,7 @@ public class PlinkSSH : MonoBehaviour
             messageLogger.LogMessage(logMessage);
             if (messageManager != null)
             {
-                if (logMessage.Contains("[Pkt]"))
+                /* if (logMessage.Contains("[Pkt]"))
                 {
                     messageManager.HandlePktMessage(logMessage);
                     if (showDebugLog) UnityEngine.Debug.Log("PKT message handled");
@@ -45,7 +45,7 @@ public class PlinkSSH : MonoBehaviour
                 {
                     messageManager.HandleRlcMessage(logMessage);
                     if (showDebugLog) UnityEngine.Debug.Log("RLC message handled");
-                }
+                } */
             }
         }
     }
