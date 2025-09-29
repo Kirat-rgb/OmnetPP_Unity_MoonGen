@@ -10,6 +10,8 @@ public class ChannelModelManager : MonoBehaviour
     public int[] targetId;
     public UeBase[] ueBases;
 
+    public double ber;
+
     void Start()
     {
         transmissionList = new GameObject[1];
@@ -57,7 +59,7 @@ public class ChannelModelManager : MonoBehaviour
         ueBases = new UeBase[connectionNum];
         for (int i = 0; i < connectionNum; i++)
         {
-            transmissionManagers[i].GetBER(ueBase.transmissionParameters[i]);
+            ber = transmissionManagers[i].GetBER(ueBase.transmissionParameters[i]);
             targetId[i] = transmissionManagers[i].GetTargetId(ueBase.transmissionParameters[i]);
             ueBases[i] = transmissionManagers[i].GetTargetUe(ueBase.transmissionParameters[i]);
         }

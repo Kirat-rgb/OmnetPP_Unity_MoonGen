@@ -1,4 +1,3 @@
 {
-  "HARQ_loss_rate": 0.0,
-  "PDCP_throughput": 0.0
+  "bit_error_rate": 1.1E-09
 }

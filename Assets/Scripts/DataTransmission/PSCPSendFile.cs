@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 public class PSCPSendFile : MonoBehaviour
 {
     public string privateKeyPath = "\"C:\\Users\\joshu\\.ssh\\UnityTestPrivate.ppk\"";
-    public string pscpPath = "C:\\Users\\joshu\\Documents\\GitHub\\OmnetPP_Unity_MoonGen\\Assets";
+    public string pscpPath = "C:\\Users\\joshu\\Documents\\GitHub\\OmnetPP_Unity_MoonGen\\Assets\\pscp.exe";
     //public string localFilePath = @"C:\Users\Bude\Emulator Test\Assets\StreamingAssets\emulation_data_throughput.lua";
     public string sshUser = "Joshua";
     public string sshHost = "pc89.filab.uni-hannover.de";

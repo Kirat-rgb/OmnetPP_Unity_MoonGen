@@ -12,10 +12,11 @@ public class JSONWriter : MonoBehaviour
 
     /* public InputFieldManager inputHARQLossRate;
     public InputFieldManager inputPDCPThroughput; */
-    public InputFieldManager inputBERValue;
+    //public InputFieldManager inputBERValue;
 
     public string jsonData;
     public bool writeJsonToLocal = true;
+    public ChannelModelManager channelModelManager;
 
     void Update()
     {
@@ -35,7 +36,7 @@ public class JSONWriter : MonoBehaviour
     {
         EmulationData emulationData = new EmulationData
         {
-            bit_error_rate = inputBERValue.inputNumber
+            bit_error_rate = channelModelManager.ber
             /* HARQ_loss_rate = inputHARQLossRate.inputNumber,
             PDCP_throughput = inputPDCPThroughput.inputNumber */
         };
@@ -66,5 +67,5 @@ public class JSONWriter : MonoBehaviour
 [System.Serializable]
 public class EmulationData
 {
-    public float bit_error_rate;
+    public double bit_error_rate;
 }

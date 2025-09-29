@@ -24,7 +24,7 @@ function configure(parser) --? -J
 	parser:option("-t --threads", "Number of threads per forwarding direction using RSS."):args(1):convert(tonumber):default(1)
 	parser:option("-l --latency", "Fixed emulated latency (in ms) on the link."):args(2):convert(tonumber):default({0,0})
 	parser:option("-q --queuedepth", "Maximum number of packets to hold in the delay line"):args(2):convert(tonumber):default({0,0})
-	parser:option("-o --loss", "Rate of bits drops"):args(2):convert(tonumber):default({0,0}) --ber
+	--parser:option("-o --loss", "Rate of bits drops"):args(2):convert(tonumber):default({0,0})
 	return parser:parse()
 end
 
@@ -396,37 +396,37 @@ function server(ns)
 		mg.sleepMillis(1)  
 
 		
-	local success, test_err = pcall(function()
-        while ns.packetInfoLength and ns.packetIdToSend <= ns.packetInfoLength do
-            if ns.messageToSend and ns.messageId >= ns.packetIdToSend then
-                local send_client = socket.tcp()
-                send_client:settimeout(0.1)
+        local success, test_err = pcall(function()
+            while ns.packetInfoLength and ns.packetIdToSend <= ns.packetInfoLength do
+                if ns.messageToSend and ns.messageId >= ns.packetIdToSend then
+                    local send_client = socket.tcp()
+                    send_client:settimeout(0.1)
 
-                if send_client:connect("127.0.0.1", 12350) then
-                    send_client:send(ns.messageToSend)
-                    ns.packetIdToSend = ns.messageId + 1    
+                    if send_client:connect("127.0.0.1", 12350) then
+                        send_client:send(ns.messageToSend)
+                        ns.packetIdToSend = ns.messageId + 1    
+                    end
+                    send_client:close()
                 end
-                send_client:close()
             end
-        end
-    end)
+        end)
 
-    if not success then
-        print("Error sending message: ", test_err)
-    end
-
-    local currentTime = limiter:get_tsc_cycles() / tsc_hz_ms
-    if currentTime > lastReportTime + 1000 then
-        local report_client = socket.tcp()
-        report_client:settimeout(0.1)
-
-        if report_client:connect("127.0.0.1", 12350) and ns.rlcMessage then
-            report_client:send(ns.rlcMessage)
+        if not success then
+            print("Error sending message: ", test_err)
         end
 
-        report_client:close()
-        lastReportTime = currentTime
-    end
+        local currentTime = limiter:get_tsc_cycles() / tsc_hz_ms
+        if currentTime > lastReportTime + 1000 then
+            local report_client = socket.tcp()
+            report_client:settimeout(0.1)
+
+            if report_client:connect("127.0.0.1", 12350) and ns.rlcMessage then
+                report_client:send(ns.rlcMessage)
+            end
+
+            report_client:close()
+            lastReportTime = currentTime
+        end
 
 		mg.sleepMillis(1)
 	end

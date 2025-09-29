@@ -12,6 +12,7 @@ public class MGMessageManager : MonoBehaviour
     private List<latencyTotal> latencyTotalInfo = new List<latencyTotal>();
 
 
+
     private int queueMaxTemp;
 
     public List<pkt> getPktInfo () { return pktInfo; }
@@ -31,45 +32,45 @@ public class MGMessageManager : MonoBehaviour
 
 
    /*  public void HandlePktMessage(string message)
-    {
-        Regex pktRegex = new Regex(@"\[Pkt\] Id: (\d+), RX: (\d+)ULL, TX: (\d+)ULL, RLCQ: (\d+)");
-        Match match = pktRegex.Match(message);
+      {
+          Regex pktRegex = new Regex(@"\[Pkt\] Id: (\d+), RX: (\d+)ULL, TX: (\d+)ULL, RLCQ: (\d+)");
+          Match match = pktRegex.Match(message);
 
-        if (match.Success)
-        {
-            int pktId = int.Parse(match.Groups[1].Value);
+          if (match.Success)
+          {
+              int pktId = int.Parse(match.Groups[1].Value);
 
-            bool pktExists = pktInfo.Any(pkt => pkt.id == pktId);
-            if (!pktExists)
-            {
-                pkt newPkt = new pkt
-                {
-                    id = pktId,
-                    rxTime = match.Groups[2].Value,
-                    txTime = match.Groups[3].Value
-                };
+              bool pktExists = pktInfo.Any(pkt => pkt.id == pktId);
+              if (!pktExists)
+              {
+                  pkt newPkt = new pkt
+                  {
+                      id = pktId,
+                      rxTime = match.Groups[2].Value,
+                      txTime = match.Groups[3].Value
+                  };
 
-                pktInfo.Add(newPkt);
-                //Debug.Log($"[Pkt] Parsed: Id={newPkt.id}, RX={newPkt.rxTime}, TX={newPkt.txTime}");
+                  pktInfo.Add(newPkt);
+                  //Debug.Log($"[Pkt] Parsed: Id={newPkt.id}, RX={newPkt.rxTime}, TX={newPkt.txTime}");
 
-                rlcQueue newRlc = new rlcQueue
-                {
-                    time = match.Groups[3].Value,
-                    queue = int.Parse(match.Groups[4].Value)
-                };
+                  rlcQueue newRlc = new rlcQueue
+                  {
+                      time = match.Groups[3].Value,
+                      queue = int.Parse(match.Groups[4].Value)
+                  };
 
-                rlcQueueBase.Add(newRlc);
-            }
-            else
-            {
-                //Debug.Log($"Duplicate Pkt Id detected: {pktId}");
-            }
-        }
-        else
-        {
-            Debug.LogError($"Failed to parse Pkt message: {message}");
-        }
-    } */
+                  rlcQueueBase.Add(newRlc);
+              }
+              else
+              {
+                  //Debug.Log($"Duplicate Pkt Id detected: {pktId}");
+              }
+          }
+          else
+          {
+              Debug.LogError($"Failed to parse Pkt message: {message}");
+          }
+      } */
 
     /* public void HandleRlcMessage(string message)
     {
