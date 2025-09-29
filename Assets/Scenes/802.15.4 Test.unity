@@ -2526,7 +2526,7 @@ PrefabInstance:
     - target: {fileID: 8751011254135846901, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: sudo ./build/MoonGen examples/802.15.4-test.lua -d 1 3 -r 250 250 -l
-        200 200 -o  0.3273720359 0.3273720359
+        200 200
       objectReference: {fileID: 0}
     - target: {fileID: 8815797471658643455, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
       propertyPath: m_AnchorMax.x

@@ -86,9 +86,9 @@ function master(args)
 
 	-- start the forwarding tasks
 	for i = 1, args.threads do
-		mg.startTask("forward", ring1, args.dev[1]:getTxQueue(i - 1), args.dev[1], ns, args.rate[1], args.latency[1], args.loss[1], args.harq[1],1)
+		mg.startTask("forward", ring1, args.dev[1]:getTxQueue(i - 1), args.dev[1], ns, args.rate[1], args.latency[1],1)
 		if args.dev[1] ~= args.dev[2] then
-			mg.startTask("forward", ring2, args.dev[2]:getTxQueue(i - 1), args.dev[2], ns, args.rate[2], args.latency[2], args.loss[2], args.harq[2],2)
+			mg.startTask("forward", ring2, args.dev[2]:getTxQueue(i - 1), args.dev[2], ns, args.rate[2], args.latency[2],2)
 		end
 	end
 
@@ -164,12 +164,12 @@ function receive(ring, rxQueue, rxDev, ns, threadId)
 end
 
 --Forwarding with HARQ -J
-function forward(ring, txQueue, txDev, ns, rate, latency, lossrate, harqLossRate, threadId)
+function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
 
 	local latencyHarq = 6;
 	local maxRetries = 3;
 
-	print("forward with rate "..rate.." and latency "..latency.." and loss rate "..lossrate)
+	print("forward with rate "..rate.." and latency "..latency.."")
 	local numThreads = 1
 	
 	local linkspeed = txDev:getLinkStatus().speed
@@ -285,7 +285,7 @@ function forward(ring, txQueue, txDev, ns, rate, latency, lossrate, harqLossRate
 
 		if count > 0 then
 			-- the rate here doesn't affect the result afaict.  It's just to help decide the size of the bad pkts
-			txQueue:sendWithDelayLoss(bufs, rate * numThreads, lossrate, sendCount)
+			txQueue:sendWithDelayLoss(bufs, rate * numThreads, 0, sendCount)
 
 			local currentSendTime = limiter:get_tsc_cycles() / tsc_hz_ms
 
