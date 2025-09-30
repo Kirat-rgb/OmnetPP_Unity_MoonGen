@@ -208,6 +208,7 @@ function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
 			--[[ harqLossRate = ns.HARQ_loss_rate or 0
 	 		throughPutPdcp = ns.PDCP_throughput or rate ]]
             ber = ns.bit_error_rate or 0
+			print("received BER: "..ber.."")
 
 
 			local retransmissionAttempt = 0;
@@ -215,6 +216,7 @@ function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
 			
 			-- get the buf's arrival timestamp and compute departure time
 			--decides if packet has to be resend and resends until arrived or attempts exhausted -J
+			--to be changed!!!
 			while math.random() < ber and retransmissionAttempt <= maxRetries do 
 				retransmissionAttempt = retransmissionAttempt + 1
 			end
