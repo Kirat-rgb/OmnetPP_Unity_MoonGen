@@ -15,7 +15,7 @@ local namespaces = require "namespaces"
 local socket = require("socket")
 
 
-local PKT_SIZE	= 60
+local PKT_SIZE	= 127
 
 function configure(parser) --? -J
 	parser:description("Forward traffic between interfaces with moongen rate control")
@@ -24,7 +24,6 @@ function configure(parser) --? -J
 	parser:option("-t --threads", "Number of threads per forwarding direction using RSS."):args(1):convert(tonumber):default(1)
 	parser:option("-l --latency", "Fixed emulated latency (in ms) on the link."):args(2):convert(tonumber):default({0,0})
 	parser:option("-q --queuedepth", "Maximum number of packets to hold in the delay line"):args(2):convert(tonumber):default({0,0})
-	--parser:option("-o --loss", "Rate of bits drops"):args(2):convert(tonumber):default({0,0})
 	return parser:parse()
 end
 
@@ -163,7 +162,7 @@ function receive(ring, rxQueue, rxDev, ns, threadId)
 	ringsize_hist:save("rxq-ringsize-distribution-histogram-"..rxDev["id"]..".csv")
 end
 
---Forwarding with HARQ -J
+
 function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
 
 	local latencyHarq = 6;
@@ -216,8 +215,8 @@ function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
 			
 			-- get the buf's arrival timestamp and compute departure time
 			--decides if packet has to be resend and resends until arrived or attempts exhausted -J
-			--to be changed!!!
-			while math.random() < ber and retransmissionAttempt <= maxRetries do 
+			per = (1-ber)^PKT_SIZE --packet error rate
+			while math.random() < per and retransmissionAttempt <= maxRetries do 
 				retransmissionAttempt = retransmissionAttempt + 1
 			end
 
