@@ -1906,6 +1906,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lteSINR: {fileID: 104671669}
   snrv: []
+  BERDisplay: 0
   meanSNR: 0
 --- !u!1 &321825953
 GameObject:
@@ -2337,7 +2338,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1805611983211386266, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
       propertyPath: privateKeyPath
-      value: '"C:\Users\joshu\.ssh\UnityPrivateTest.ppk"'
+      value: '"C:\Users\joshu\.ssh\UnityTestPrivate.ppk"'
       objectReference: {fileID: 0}
     - target: {fileID: 2043357901535772415, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument

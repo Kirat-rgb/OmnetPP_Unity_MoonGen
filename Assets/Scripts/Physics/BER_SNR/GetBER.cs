@@ -9,6 +9,8 @@ public class GetBER : MonoBehaviour
     private double[] BERCurveBER;
     public LteSINR lteSINR;
     public List<double> snrv = new List<double>();
+
+    public double BERDisplay = 0;
     public double meanSNR;
 
     void Start()
@@ -39,6 +41,9 @@ public class GetBER : MonoBehaviour
 
         Debug.Log("Current meanSNR value: " + meanSNR);
         Debug.Log("Current BER value: " + BER);
+
+        BERDisplay = BER;
+
         return BER;
     }
     

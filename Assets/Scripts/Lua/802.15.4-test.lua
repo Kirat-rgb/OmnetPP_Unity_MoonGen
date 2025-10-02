@@ -209,6 +209,8 @@ function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
             ber = ns.bit_error_rate or 0
 			print("received BER: "..ber.."")
 
+			ber = 0.5
+
 
 			local retransmissionAttempt = 0;
 			local buf = bufs[iix]
@@ -225,7 +227,7 @@ function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
 				loss = true;
 				sendCount = sendCount - 1
 				print("Retransmission max attempts reached, packet lost")
-				retransmissionAttempt = 4
+				retransmissionAttempt = 3
 			else
 				--print("HARQ retransmission attempt: ", retransmissionAttempt)
 			end
@@ -241,7 +243,10 @@ function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
 
 			--local min_latency_due_to_throughput = (1292 * 8) / throughPutPdcp * tsc_hz_ms
 
-			local min_latency_due_to_throughput = 1 / 67 * tsc_hz --? -J
+			--pktsize 127 B
+			--250 kb/s
+
+			local min_latency_due_to_throughput = 1 / 67 * tsc_hz --? -J  change! pkt/s
 
 			local send_time = arrival_timestamp + (latencyHarq * tsc_hz_ms * retransmissionAttempt)
 			local send_time_limit = last_send_time + min_latency_due_to_throughput
@@ -265,7 +270,7 @@ function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
 			end
 
 			
-			if threadId == 2 then
+			if threadId == 2 then  -- if 2 not work, change to 1
 			local packetId = packetInfoLength + iix
             packetInfo[packetId] = {
                 id = packetId,
