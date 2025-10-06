@@ -17,7 +17,7 @@ local socket = require("socket")
 
 local PKT_SIZE	= 127
 
-function configure(parser) --? -J
+function configure(parser)
 	parser:description("Forward traffic between interfaces with moongen rate control")
 	parser:option("-d --dev", "Devices to use, specify the same device twice to echo packets."):args(2):convert(tonumber)
 	parser:option("-r --rate", "Forwarding rates in Mbps (two values for two links)"):args(2):convert(tonumber)
@@ -216,8 +216,9 @@ function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
 			local buf = bufs[iix]
 			
 			-- get the buf's arrival timestamp and compute departure time
-			--decides if packet has to be resend and resends until arrived or attempts exhausted -J
-			per = (1-ber)^PKT_SIZE --packet error rate
+			--decides if packet has to be resend and resends until arrived or attempts exhausted
+			per = 1 - (1 - ber)^(PKT_SIZE * 8) --packet error rate
+			print("received PER: "..per.."")
 			while math.random() < per and retransmissionAttempt <= maxRetries do 
 				retransmissionAttempt = retransmissionAttempt + 1
 			end
@@ -246,7 +247,7 @@ function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
 			--pktsize 127 B
 			--250 kb/s
 
-			local min_latency_due_to_throughput = 1 / 67 * tsc_hz --? -J  change! pkt/s
+			local min_latency_due_to_throughput = 1 / 246 * tsc_hz --? -J  change! pkt/s
 
 			local send_time = arrival_timestamp + (latencyHarq * tsc_hz_ms * retransmissionAttempt)
 			local send_time_limit = last_send_time + min_latency_due_to_throughput

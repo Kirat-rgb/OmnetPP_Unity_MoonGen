@@ -25,7 +25,7 @@ public class GetBER : MonoBehaviour
         snrv.Clear();
         snrv = lteSINR.GetSINR(true, parameter);
         meanSNR = MeanSnr(snrv);
-        int closestSNR = 0;
+        /* int closestSNR = 0;
         double difference = Math.Abs(meanSNR - BERCurveSNR[closestSNR]);
         for (int i = 1; i < BERCurveSNR.Length; i++)
         {
@@ -39,14 +39,26 @@ public class GetBER : MonoBehaviour
 
         double BER = BERCurveBER[closestSNR];
 
-        Debug.Log("Current meanSNR value: " + meanSNR);
+        Debug.Log("Current meanSNR value: " + meanSNR); */
+
+        double BER;
+        double sum = 0.0;
+        Debug.Log("meanSNR: " + meanSNR);
+        for (int k = 2; k <= 16; k++)
+        {
+            sum = sum + Math.Pow(-1.0, k) * ((faculty(16)/(faculty(k)) * faculty(16 - k))) * Math.Pow(Math.E, 20.0 * meanSNR * ((1.0 / k) - 1.0));
+        }
+        Debug.Log("sum: " + sum);
+
+        BER = (8.0/15.0) * (1.0/16.0) * sum;
+
         Debug.Log("Current BER value: " + BER);
 
         BERDisplay = BER;
 
         return BER;
     }
-    
+
     public double MeanSnr(List<double> snr)
     {
         if (snr == null || snr.Count == 0)
@@ -59,6 +71,24 @@ public class GetBER : MonoBehaviour
         }
 
         return sum / snr.Count;
+    }
+
+    public int faculty(int number) {
+        int result;
+        
+        if (number == 0 || number == 1)
+        {
+            return 1;
+        }
+
+        result = number;
+        number = number - 1;
+        while (number >= 1)
+        {
+            result = result * number;
+            number = number - 1;
+        }
+        return result;
     }
 
 
