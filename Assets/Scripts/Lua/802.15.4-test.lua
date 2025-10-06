@@ -52,9 +52,12 @@ function master(args)
 	local qdepth1 = args.queuedepth[1]
 	--qdepth1 = math.ceil(2097152/1280)
 
+	rate1 = args.rate[1] / 1000 --its kbit/s not mbit/s
+	rate2 = args.rate[2] / 1000
+
 
 	if qdepth1 < 1 then
-		qdepth1 = math.ceil((args.latency[1] * args.rate[1] * 1000)/672)
+		qdepth1 = math.ceil((args.latency[1] * rate1 * 1000)/672)
 		if (qdepth1 == 0) then
 			qdepth1 = 1
 		end
@@ -68,7 +71,7 @@ function master(args)
 
 
 	if qdepth2 < 1 then
-		qdepth2 = math.ceil((args.latency[2] * args.rate[2] * 1000)/672)
+		qdepth2 = math.ceil((args.latency[2] * rate2 * 1000)/672)
 		if (qdepth2 == 0) then
 			qdepth2 = 1
 		end
@@ -85,9 +88,9 @@ function master(args)
 
 	-- start the forwarding tasks
 	for i = 1, args.threads do
-		mg.startTask("forward", ring1, args.dev[1]:getTxQueue(i - 1), args.dev[1], ns, args.rate[1], args.latency[1],1)
+		mg.startTask("forward", ring1, args.dev[1]:getTxQueue(i - 1), args.dev[1], ns, rate1, args.latency[1],1)
 		if args.dev[1] ~= args.dev[2] then
-			mg.startTask("forward", ring2, args.dev[2]:getTxQueue(i - 1), args.dev[2], ns, args.rate[2], args.latency[2],2)
+			mg.startTask("forward", ring2, args.dev[2]:getTxQueue(i - 1), args.dev[2], ns, rate2, args.latency[2],2)
 		end
 	end
 
@@ -209,7 +212,7 @@ function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
             ber = ns.bit_error_rate or 0
 			print("received BER: "..ber.."")
 
-			ber = 0.5
+			--ber = 0.5
 
 
 			local retransmissionAttempt = 0;
@@ -217,6 +220,7 @@ function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
 			
 			-- get the buf's arrival timestamp and compute departure time
 			--decides if packet has to be resend and resends until arrived or attempts exhausted
+			per = ber
 			per = 1 - (1 - ber)^(PKT_SIZE * 8) --packet error rate
 			print("received PER: "..per.."")
 			while math.random() < per and retransmissionAttempt <= maxRetries do 

@@ -52,6 +52,10 @@ public class GetBER : MonoBehaviour
 
         BER = (8.0/15.0) * (1.0/16.0) * sum;
 
+        if (BER > 0.5) {
+            BER = 0.5;
+        }
+
         Debug.Log("Current BER value: " + BER);
 
         BERDisplay = BER;
