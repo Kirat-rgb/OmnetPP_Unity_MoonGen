@@ -46,11 +46,11 @@ public class GetBER : MonoBehaviour
         Debug.Log("meanSNR: " + meanSNR);
         for (int k = 2; k <= 16; k++)
         {
-            sum = sum + Math.Pow(-1.0, k) * ((faculty(16)/(faculty(k)) * faculty(16 - k))) * Math.Pow(Math.E, 20.0 * meanSNR * ((1.0 / k) - 1.0));
+            sum = sum + Math.Pow(-1.0, k) * (faculty(16)/(faculty(k) * faculty(16 - k))) * Math.Pow(Math.E, 20.0 * meanSNR * ((1.0 / k) - 1.0));
         }
-        Debug.Log("sum: " + sum);
+        //Debug.Log("sum: " + sum);
 
-        BER = (8.0/15.0) * (1.0/16.0) * sum;
+        BER = 8.0/15.0 * (1.0/16.0) * sum;
 
         if (BER > 0.5) {
             BER = 0.5;

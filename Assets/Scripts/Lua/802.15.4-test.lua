@@ -251,7 +251,7 @@ function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
 			--pktsize 127 B
 			--250 kb/s
 
-			local min_latency_due_to_throughput = 1 / 246 * tsc_hz --? -J  change! pkt/s
+			local min_latency_due_to_throughput = 1 / 246 * tsc_hz --  change! pkt/s, is this correct?
 
 			local send_time = arrival_timestamp + (latencyHarq * tsc_hz_ms * retransmissionAttempt)
 			local send_time_limit = last_send_time + min_latency_due_to_throughput

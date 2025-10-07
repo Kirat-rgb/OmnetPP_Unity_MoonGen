@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UeMovementControl : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    public float moveSpeed = 0.5f;
     public UeStatusDisplay statusDisplay;
     public Transform cameraTransform;
     public Vector3 positionLocal;
