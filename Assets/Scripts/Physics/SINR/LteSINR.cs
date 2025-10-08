@@ -10,6 +10,8 @@ public class LteSINR : MonoBehaviour
     public double recvPower = 0.0;
     public double fading;
 
+    public double interference = 0.0;
+
     //public UeBase Ue;
     public JakesFading jakesFading;
     public DopplerSpeed dopplerSpeed;
@@ -43,10 +45,9 @@ public class LteSINR : MonoBehaviour
             {
                 fading = jakesFading.JakesFadingComputation(transmissionParameter, i, speed, true);
             }
-
-            double interference = 0.0; 
+            
             double noise = thermalNoise + noiseFigure;
-            double sinr = recvPower + fading - interference - noise;
+            double sinr = recvPower + fading - interference - noise; //?
             snrVector[i] = sinr;
         }
 
