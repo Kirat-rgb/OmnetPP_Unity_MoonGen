@@ -43,16 +43,22 @@ public class GetBER : MonoBehaviour
 
         double BER;
         double sum = 0.0;
+        //meanSNR = -5;
+        Debug.Log("meanSNR in dB: " + meanSNR);
+        meanSNR = DeDB(meanSNR);
         Debug.Log("meanSNR: " + meanSNR);
+        //Debug.Log("fakultät: " + 16 + " Ergebnis:" + faculty(16));
         for (int k = 2; k <= 16; k++)
         {
-            sum = sum + Math.Pow(-1.0, k) * (faculty(16)/(faculty(k) * faculty(16 - k))) * Math.Pow(Math.E, 20.0 * meanSNR * ((1.0 / k) - 1.0));
+            double binomial = Faculty(16) / (Faculty(k) * Faculty(16 - k));
+            sum = sum + Math.Pow(-1.0, k) * binomial * Math.Pow(Math.E, 20.0 * meanSNR * ((1.0 / k) - 1.0));
         }
         //Debug.Log("sum: " + sum);
 
-        BER = 8.0/15.0 * (1.0/16.0) * sum;
+        BER = 8.0 / 15.0 * (1.0 / 16.0) * sum;
 
-        if (BER > 0.5) {
+        if (BER > 0.5 || BER < 0)
+        {
             BER = 0.5;
         }
 
@@ -61,6 +67,12 @@ public class GetBER : MonoBehaviour
         BERDisplay = BER;
 
         return BER;
+    }
+    
+    public double DeDB(double DBnumber)
+    {
+        double result = Math.Pow(10, DBnumber / 10);
+        return result;
     }
 
     public double MeanSnr(List<double> snr)
@@ -77,8 +89,8 @@ public class GetBER : MonoBehaviour
         return sum / snr.Count;
     }
 
-    public int faculty(int number) {
-        int result;
+    public long Faculty(int number) {
+        long result;
         
         if (number == 0 || number == 1)
         {

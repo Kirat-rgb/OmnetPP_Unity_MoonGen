@@ -827,7 +827,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enbId: 1
-  txPower: 1
+  txPower: 10
   enbMobiltiyLocal: {x: 0, y: 0, z: 0}
   enbMobilityInfo: 
   antennaGain: 0
@@ -9430,6 +9430,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NRUePrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1849949922465833481, guid: b5015ce5ce81cbf429fa14de83f58a35, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2849854497507224093, guid: b5015ce5ce81cbf429fa14de83f58a35, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -9460,7 +9464,7 @@ PrefabInstance:
       objectReference: {fileID: 947352830}
     - target: {fileID: 4421550662611993277, guid: b5015ce5ce81cbf429fa14de83f58a35, type: 3}
       propertyPath: txPower
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4421550662611993277, guid: b5015ce5ce81cbf429fa14de83f58a35, type: 3}
       propertyPath: numBands
@@ -9468,7 +9472,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4421550662611993277, guid: b5015ce5ce81cbf429fa14de83f58a35, type: 3}
       propertyPath: cableLoss
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4421550662611993277, guid: b5015ce5ce81cbf429fa14de83f58a35, type: 3}
       propertyPath: frequency
@@ -9480,7 +9484,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4421550662611993277, guid: b5015ce5ce81cbf429fa14de83f58a35, type: 3}
       propertyPath: noiseFigure
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4996426775321139758, guid: b5015ce5ce81cbf429fa14de83f58a35, type: 3}
       propertyPath: overhead

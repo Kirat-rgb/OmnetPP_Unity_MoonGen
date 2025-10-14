@@ -220,8 +220,7 @@ function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
 			
 			-- get the buf's arrival timestamp and compute departure time
 			--decides if packet has to be resend and resends until arrived or attempts exhausted
-			per = ber
-			per = 1 - (1 - ber)^(PKT_SIZE * 8) --packet error rate
+			per = 1.0 - (1.0 - ber)^(PKT_SIZE * 8.0) --packet error rate
 			print("received PER: "..per.."")
 			while math.random() < per and retransmissionAttempt <= maxRetries do 
 				retransmissionAttempt = retransmissionAttempt + 1
