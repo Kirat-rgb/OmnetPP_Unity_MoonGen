@@ -1,1 +1,1 @@
-{    bit_error_rate = 0,}
+{    bit_error_rate = 0.5,}
