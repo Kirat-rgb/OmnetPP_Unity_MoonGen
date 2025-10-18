@@ -13,6 +13,8 @@ public class GetBER : MonoBehaviour
     public double BERDisplay = 0;
     public double meanSNR;
 
+    public bool upload = false;
+
     void Start()
     {
         BERCurveSNR = BerCurvesData.BerCurveSNR;
@@ -23,7 +25,7 @@ public class GetBER : MonoBehaviour
     public double getBER(TransmissionParameter parameter)
     {
         snrv.Clear();
-        snrv = lteSINR.GetSINR(true, parameter);
+        snrv = lteSINR.GetSINR(upload, parameter);
         meanSNR = MeanSnr(snrv);
         /* int closestSNR = 0;
         double difference = Math.Abs(meanSNR - BERCurveSNR[closestSNR]);

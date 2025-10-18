@@ -47,7 +47,7 @@ public class LteSINR : MonoBehaviour
             }
             
             double noise = thermalNoise + noiseFigure;
-            double sinr = recvPower + fading - interference - noise; //?
+            double sinr = recvPower + fading - interference - noise;
             snrVector[i] = sinr;
         }
 

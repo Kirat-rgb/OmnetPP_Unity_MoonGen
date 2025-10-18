@@ -12,6 +12,7 @@ public class MaterialProperties : MonoBehaviour
         Forest,
         Brick,
         Concrete,
+        ReinforcedConcrete,
         Glass
     }
 
@@ -67,6 +68,11 @@ public class MaterialProperties : MonoBehaviour
             case MaterialType.Concrete:
                 resistivity = 1e2f;
                 relativePermittivity = 4.5f;
+                relativePermeability = 1.0f;
+                break;
+            case MaterialType.ReinforcedConcrete: //Sources are in EMAIL!!!
+                resistivity = 1e5f;
+                relativePermittivity = 10.0f;
                 relativePermeability = 1.0f;
                 break;
             case MaterialType.Glass:
