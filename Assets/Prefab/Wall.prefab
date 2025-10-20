@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908e9d9142ec7aa4a8abf57753b62ca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialType: 7
+  materialType: 8
   resistivity: 0
   relativePermittivity: 0
   relativePermeability: 0

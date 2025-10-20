@@ -9,8 +9,9 @@ public class LteSINR : MonoBehaviour
     public bool fadingEnabled = true;
     public double recvPower = 0.0;
     public double fading;
-
     public double interference = 0.0;
+    public float speed = 0f;
+    public float dopplerShift = 0f;
 
     //public UeBase Ue;
     public JakesFading jakesFading;
@@ -37,13 +38,13 @@ public class LteSINR : MonoBehaviour
 
         recvPower = totalRecvPower.computeTotalRecvpower(isUpload, transmissionParameter);
 
-        float speed = dopplerSpeed.computeDopplerSpeed(transmissionParameter);
+        speed = dopplerSpeed.computeDopplerSpeed(transmissionParameter);
 
         for (int i = 0; i < transmissionParameter.numBands; i++)
         {
             if (fadingEnabled)
             {
-                fading = jakesFading.JakesFadingComputation(transmissionParameter, i, speed, true);
+                fading = jakesFading.JakesFadingComputation(transmissionParameter, i, speed, isUpload, this);
             }
             
             double noise = thermalNoise + noiseFigure;

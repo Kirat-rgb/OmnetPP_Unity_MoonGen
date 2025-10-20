@@ -1,1 +1,1 @@
-{    bit_error_rate = 0,}
+{    bit_error_rate = 9.4351900591573224E-10,}

@@ -56,8 +56,6 @@ public class JSONWriter : MonoBehaviour
             {
                 writer.Write(json);
             }
-
-            Debug.Log("JSON data written to: " + filePath);
         }
 
         return json;

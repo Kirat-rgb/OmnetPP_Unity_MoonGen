@@ -776,7 +776,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enbId: 1
-  txPower: 10
+  txPower: 1
   enbMobiltiyLocal: {x: 0, y: 0, z: 0}
   enbMobilityInfo: 
   antennaGain: 0
@@ -2184,6 +2184,8 @@ MonoBehaviour:
   lteSINR: {fileID: 104671669}
   snrv: []
   BERDisplay: 0
+  PERDisplay: 0
+  meanSNRDB: 0
   meanSNR: 0
   upload: 0
 --- !u!4 &318531718 stripped
@@ -8596,11 +8598,15 @@ PrefabInstance:
       objectReference: {fileID: 947352830}
     - target: {fileID: 4324620982535302738, guid: b5015ce5ce81cbf429fa14de83f58a35, type: 3}
       propertyPath: interference
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324620982535302738, guid: b5015ce5ce81cbf429fa14de83f58a35, type: 3}
+      propertyPath: fadingEnabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4421550662611993277, guid: b5015ce5ce81cbf429fa14de83f58a35, type: 3}
       propertyPath: txPower
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4421550662611993277, guid: b5015ce5ce81cbf429fa14de83f58a35, type: 3}
       propertyPath: numBands
@@ -10582,7 +10588,7 @@ Transform:
   m_GameObject: {fileID: 1823688464}
   serializedVersion: 2
   m_LocalRotation: {x: 0.4700956, y: 0, z: 0, w: 0.88261557}
-  m_LocalPosition: {x: -1205, y: 642, z: -564}
+  m_LocalPosition: {x: -1252.42, y: 100, z: -300}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

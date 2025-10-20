@@ -10,12 +10,10 @@ public class JakesFading : MonoBehaviour
     private Dictionary<int, Dictionary<int, JakesFadingData>> jakesFadingMap = new Dictionary<int, Dictionary<int, JakesFadingData>>();
     private Dictionary<int, Dictionary<int, JakesFadingData>> jakesFadingMapUe = new Dictionary<int, Dictionary<int, JakesFadingData>>();
 
-    private int fadingPaths = 6; 
+    private int fadingPaths = 6;
     private float delayRMS = 363e-9f;
 
-    public float dopplerSpeed = 0;
-
-    public double JakesFadingComputation(TransmissionParameter transmissionParameter, int id, float speed, bool isUpload)
+    public double JakesFadingComputation(TransmissionParameter transmissionParameter, int id, float speed, bool isUpload, LteSINR lteSINR)
     {
         Dictionary<int, Dictionary<int, JakesFadingData>> actualJakesMap = isUpload
             ? jakesFadingMap : jakesFadingMapUe ;
@@ -23,13 +21,11 @@ public class JakesFading : MonoBehaviour
         int nodeId = id;
         float carrierFrequency = transmissionParameter.frequency;
 
-        dopplerSpeed = speed;
-
         if (!actualJakesMap.ContainsKey(nodeId) || speed != 0)
         {
             actualJakesMap[nodeId] = new Dictionary<int, JakesFadingData>();  
 
-            for (int j = 0; j < transmissionParameter.numBands; j++)
+            for (int j = 1; j <= transmissionParameter.numBands; j++) //was j = 0; j < transmissionParameter.numBands
             {
                 JakesFadingData temp = new JakesFadingData();
 
@@ -51,11 +47,11 @@ public class JakesFading : MonoBehaviour
 
         JakesFadingData actualJakesData = actualJakesMap[nodeId][transmissionParameter.numBands];
 
-        float dopplerShift = (speed * f) / SPEED_OF_LIGHT;
+        lteSINR.dopplerShift = (speed * f) / SPEED_OF_LIGHT;
 
         for (int i = 0; i < fadingPaths; i++)
         {
-            float phiD = actualJakesData.angleOfArrival[i] * dopplerShift;
+            float phiD = actualJakesData.angleOfArrival[i] * lteSINR.dopplerShift;
             float phiI = actualJakesData.delaySpread[i] * f;
             float phi = 2.0f * Mathf.PI * (phiD * t - phiI);
 
@@ -64,7 +60,6 @@ public class JakesFading : MonoBehaviour
             re_h += attenuation * Mathf.Cos(phi);
             im_h -= attenuation * Mathf.Sin(phi);
         }
-
         return LinearToDb(re_h * re_h + im_h * im_h);
     }
 

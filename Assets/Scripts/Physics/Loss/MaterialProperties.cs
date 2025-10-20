@@ -13,6 +13,7 @@ public class MaterialProperties : MonoBehaviour
         Brick,
         Concrete,
         ReinforcedConcrete,
+        LimeSandstone,
         Glass
     }
 
@@ -73,6 +74,11 @@ public class MaterialProperties : MonoBehaviour
             case MaterialType.ReinforcedConcrete: //Sources are in EMAIL!!!
                 resistivity = 1e5f;
                 relativePermittivity = 10.0f;
+                relativePermeability = 1.0f;
+                break;
+            case MaterialType.LimeSandstone: //Sources are in EMAIL!!!
+                resistivity = 1e9f;
+                relativePermittivity = 6.0f;
                 relativePermeability = 1.0f;
                 break;
             case MaterialType.Glass:

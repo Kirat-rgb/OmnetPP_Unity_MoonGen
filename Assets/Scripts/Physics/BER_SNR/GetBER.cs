@@ -11,6 +11,8 @@ public class GetBER : MonoBehaviour
     public List<double> snrv = new List<double>();
 
     public double BERDisplay = 0;
+    public double PERDisplay = 0;
+    public double meanSNRDB;
     public double meanSNR;
 
     public bool upload = false;
@@ -46,9 +48,8 @@ public class GetBER : MonoBehaviour
         double BER;
         double sum = 0.0;
         //meanSNR = -5;
-        Debug.Log("meanSNR in dB: " + meanSNR);
+        meanSNRDB = meanSNR;
         meanSNR = DeDB(meanSNR);
-        Debug.Log("meanSNR: " + meanSNR);
         //Debug.Log("fakultät: " + 16 + " Ergebnis:" + faculty(16));
         for (int k = 2; k <= 16; k++)
         {
@@ -64,9 +65,8 @@ public class GetBER : MonoBehaviour
             BER = 0.5;
         }
 
-        Debug.Log("Current BER value: " + BER);
-
         BERDisplay = BER;
+        PERDisplay = 1 - Math.Pow(1.0 - BER, 127.0 * 8.0);
 
         return BER;
     }
