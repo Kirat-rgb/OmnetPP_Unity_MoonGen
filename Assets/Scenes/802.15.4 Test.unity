@@ -2187,7 +2187,7 @@ MonoBehaviour:
   PERDisplay: 0
   meanSNRDB: 0
   meanSNR: 0
-  upload: 0
+  upload: 1
 --- !u!4 &318531718 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3588567015799909994, guid: cae63d60131aead439951bf17a42f884, type: 3}
@@ -8598,7 +8598,7 @@ PrefabInstance:
       objectReference: {fileID: 947352830}
     - target: {fileID: 4324620982535302738, guid: b5015ce5ce81cbf429fa14de83f58a35, type: 3}
       propertyPath: interference
-      value: 40
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4324620982535302738, guid: b5015ce5ce81cbf429fa14de83f58a35, type: 3}
       propertyPath: fadingEnabled
@@ -8626,7 +8626,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4421550662611993277, guid: b5015ce5ce81cbf429fa14de83f58a35, type: 3}
       propertyPath: noiseFigure
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4421550662611993277, guid: b5015ce5ce81cbf429fa14de83f58a35, type: 3}
       propertyPath: thermalNoise
