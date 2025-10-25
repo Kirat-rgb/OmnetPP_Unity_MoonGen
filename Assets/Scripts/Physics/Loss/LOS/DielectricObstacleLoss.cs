@@ -18,6 +18,8 @@ public class DielectricObstacleLoss : MonoBehaviour
     public bool useSegmentedRaycasts = false;
     public int segments = 1;
 
+    public double intersectionDisplay = 0;
+
     void Start()
     {
         distanceConvert = 1/ScenarioScale.staticScale;
@@ -34,6 +36,8 @@ public class DielectricObstacleLoss : MonoBehaviour
         //double delta = Math.Atan(lossTangent);
         float k = 2 * Mathf.PI * frequency / propagationSpeed;
         double factor = Math.Exp(-1 * lossTangent * (k * distance));
+
+                            intersectionDisplay = distance;
 
         //Debug.Log("Dielectric loss factor: " + factor);
         //Debug.Log("Distance: " + distance);
