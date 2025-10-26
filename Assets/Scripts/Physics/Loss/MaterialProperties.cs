@@ -37,7 +37,7 @@ public class MaterialProperties : MonoBehaviour
         switch (materialType)
         {
             case MaterialType.Air:
-                resistivity = 1.5e13f;//float.NaN;
+                resistivity = float.NaN;
                 relativePermittivity = 1.00058986f;
                 relativePermeability = 1.00000037f;
                 break;
