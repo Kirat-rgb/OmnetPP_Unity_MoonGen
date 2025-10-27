@@ -168,7 +168,7 @@ end
 
 function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
 
-	local latencyHarq = 6;
+	local latencyCSMA = math.random(0, 2.24);
 	local maxRetries = 3;
 
 	print("forward with rate "..rate.." and latency "..latency.."")
@@ -252,7 +252,7 @@ function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
 
 			local min_latency_due_to_throughput = 1 / 246 * tsc_hz --  change! pkt/s, is this correct?
 
-			local send_time = arrival_timestamp + (latencyHarq * tsc_hz_ms * retransmissionAttempt)
+			local send_time = arrival_timestamp + (latencyCSMA * tsc_hz_ms * retransmissionAttempt)
 			local send_time_limit = last_send_time + min_latency_due_to_throughput
 
 			if send_time_limit > send_time then
