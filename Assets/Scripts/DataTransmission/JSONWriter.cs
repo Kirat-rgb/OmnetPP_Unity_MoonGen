@@ -36,7 +36,7 @@ public class JSONWriter : MonoBehaviour
     {
         EmulationData emulationData = new EmulationData
         {
-            bit_error_rate = channelModelManager.ber
+            //bit_error_rate = channelModelManager.ber
             /* HARQ_loss_rate = inputHARQLossRate.inputNumber,
             PDCP_throughput = inputPDCPThroughput.inputNumber */
         };

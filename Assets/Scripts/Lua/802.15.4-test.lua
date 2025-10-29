@@ -168,7 +168,6 @@ end
 
 function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
 
-	local latencyCSMA = math.random(0, 2.24);
 	local maxRetries = 3;
 
 	print("forward with rate "..rate.." and latency "..latency.."")
@@ -209,8 +208,10 @@ function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
 
 			--[[ harqLossRate = ns.HARQ_loss_rate or 0
 	 		throughPutPdcp = ns.PDCP_throughput or rate ]]
-            ber = ns.bit_error_rate or 0
-			print("received BER: "..ber.."")
+            --[[ ber = ns.bit_error_rate or 0
+			print("received BER: "..ber.."") ]]
+			tp = ns.throughput
+			print("received TP: "..tp.."")
 
 			--ber = 0.5
 
@@ -220,7 +221,7 @@ function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
 			
 			-- get the buf's arrival timestamp and compute departure time
 			--decides if packet has to be resend and resends until arrived or attempts exhausted
-			per = 1.0 - (1.0 - ber)^(PKT_SIZE * 8.0) --packet error rate
+			--[[ per = 1.0 - (1.0 - ber)^(PKT_SIZE * 8.0) --packet error rate
 			print("received PER: "..per.."")
 			while math.random() < per and retransmissionAttempt <= maxRetries do 
 				retransmissionAttempt = retransmissionAttempt + 1
@@ -234,7 +235,7 @@ function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
 				retransmissionAttempt = 3
 			else
 				--print("HARQ retransmission attempt: ", retransmissionAttempt)
-			end
+			end ]]
 
 
 			-- local current_time = limiter:get_tsc_cycles()
@@ -252,7 +253,7 @@ function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
 
 			local min_latency_due_to_throughput = 1 / 246 * tsc_hz --  change! pkt/s, is this correct?
 
-			local send_time = arrival_timestamp + (latencyCSMA * tsc_hz_ms * retransmissionAttempt)
+			local send_time = arrival_timestamp + (tsc_hz_ms * retransmissionAttempt)
 			local send_time_limit = last_send_time + min_latency_due_to_throughput
 
 			if send_time_limit > send_time then
@@ -390,7 +391,7 @@ function server(ns)
                 print("Received raw message:", message)
                 local ok, data = pcall(load("return " .. message))
                 if ok and type(data) == "table" then
-					ns.bit_error_rate = data.bit_error_rate
+					--ns.bit_error_rate = data.bit_error_rate
                 else
                     print("Invalid Lua table format.")
                 end
