@@ -1,1 +1,1 @@
-{    bit_error_rate = 0,}
+{    energy_interference = -57.097950247581309,    energy_sender = -57.569897223135627,    los_interference = false,    los_sender = false,}

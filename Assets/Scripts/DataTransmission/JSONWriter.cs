@@ -16,7 +16,10 @@ public class JSONWriter : MonoBehaviour
 
     public string jsonData;
     public bool writeJsonToLocal = true;
-    public ChannelModelManager channelModelManager;
+    public LteSINR SINRDevice2;
+    public LteSINR SINRInterferenceCreator;
+    public LOS_Ray LOSDevice2;
+    public LOS_Ray LOSInterferenceCreator;
 
     void Update()
     {
@@ -36,6 +39,10 @@ public class JSONWriter : MonoBehaviour
     {
         EmulationData emulationData = new EmulationData
         {
+            energy_sender = SINRInterferenceCreator.recvPower,
+            energy_interference = SINRDevice2.recvPower,
+            los_sender = LOSDevice2.collision,
+            los_interference = LOSInterferenceCreator.collision
             //bit_error_rate = channelModelManager.ber
             /* HARQ_loss_rate = inputHARQLossRate.inputNumber,
             PDCP_throughput = inputPDCPThroughput.inputNumber */
@@ -65,5 +72,9 @@ public class JSONWriter : MonoBehaviour
 [System.Serializable]
 public class EmulationData
 {
-    public double bit_error_rate;
+    //public double bit_error_rate;
+    public double energy_interference;
+    public double energy_sender;
+    public bool los_interference;
+    public bool los_sender;
 }

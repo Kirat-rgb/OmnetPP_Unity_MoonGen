@@ -15,7 +15,7 @@ local namespaces = require "namespaces"
 local socket = require("socket")
 
 
-local PKT_SIZE	= 127
+local PKT_SIZE	= 127 --Byte
 
 function configure(parser)
 	parser:description("Forward traffic between interfaces with moongen rate control")
@@ -210,10 +210,16 @@ function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
 	 		throughPutPdcp = ns.PDCP_throughput or rate ]]
             --[[ ber = ns.bit_error_rate or 0
 			print("received BER: "..ber.."") ]]
-			tp = ns.throughput
-			print("received TP: "..tp.."")
+
+			--[[ tp = ns.throughput
+			print("received TP: "..tp.."") ]]
 
 			--ber = 0.5
+
+			senderEnergy = ns.energy_sender
+			interferenceEnergy = ns.energy_interference
+			senderLOS = ns.los_sender
+			interferenceLOS = ns.los_interference
 
 
 			local retransmissionAttempt = 0;
@@ -392,6 +398,10 @@ function server(ns)
                 local ok, data = pcall(load("return " .. message))
                 if ok and type(data) == "table" then
 					--ns.bit_error_rate = data.bit_error_rate
+					ns.energy_sender = data.energy_sender
+					ns.energy_interference = data.energy_interference
+					ns.los_sender = data.los_sender
+					ns.los_interference = data.los_interference
                 else
                     print("Invalid Lua table format.")
                 end
