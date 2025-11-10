@@ -20,6 +20,7 @@ public class JSONWriter : MonoBehaviour
     public LteSINR SINRInterferenceCreator;
     public LOS_Ray LOSDevice2;
     public LOS_Ray LOSInterferenceCreator;
+    public double interferenceTP = 0;
 
     void Update()
     {
@@ -39,14 +40,20 @@ public class JSONWriter : MonoBehaviour
     {
         EmulationData emulationData = new EmulationData
         {
-            energy_sender = SINRInterferenceCreator.recvPower,
-            energy_interference = SINRDevice2.recvPower,
-            los_sender = LOSDevice2.collision,
-            los_interference = LOSInterferenceCreator.collision
+            energy_sender = SINRDevice2.recvPower,
+            energy_interference = SINRInterferenceCreator.recvPower,
+            los_sender = !LOSDevice2.collision,
+            los_interference = !LOSInterferenceCreator.collision,
+            interference_throughput = interferenceTP
             //bit_error_rate = channelModelManager.ber
             /* HARQ_loss_rate = inputHARQLossRate.inputNumber,
             PDCP_throughput = inputPDCPThroughput.inputNumber */
         };
+        Debug.Log("Sender Energy: " + emulationData.energy_sender);
+        Debug.Log("Interference Energy: " + emulationData.energy_interference);
+        Debug.Log("Sender LOS: " + emulationData.los_sender);
+        Debug.Log("Interference LOS: " + emulationData.los_interference);
+        Debug.Log("Interference TP: " + emulationData.interference_throughput);
 
         string json = JsonConvert.SerializeObject(emulationData, Formatting.Indented);
 
@@ -77,4 +84,5 @@ public class EmulationData
     public double energy_sender;
     public bool los_interference;
     public bool los_sender;
+    public double interference_throughput;
 }

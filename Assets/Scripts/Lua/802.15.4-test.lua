@@ -52,8 +52,8 @@ function master(args)
 	local qdepth1 = args.queuedepth[1]
 	--qdepth1 = math.ceil(2097152/1280)
 
-	rate1 = args.rate[1] / 1000 --its kbit/s not mbit/s
-	rate2 = args.rate[2] / 1000
+	rate1 = args.rate[1] --its kbit/s not mbit/s
+	rate2 = args.rate[2]
 
 
 	if qdepth1 < 1 then
@@ -216,11 +216,43 @@ function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
 
 			--ber = 0.5
 
-			senderEnergy = ns.energy_sender
-			interferenceEnergy = ns.energy_interference
-			senderLOS = ns.los_sender
-			interferenceLOS = ns.los_interference
+			senderEnergy = ns.energy_sender or 0
+			interferenceEnergy = ns.energy_interference or 0
+			senderLOS = ns.los_sender or 0
+			interferenceLOS = ns.los_interference or 0
+			interferenceTP = ns.interference_throughput or 0		
 
+			varianz = math.random(-3, 3)
+			--print("Varianz: "..varianz.."")
+			if interferenceLOS then
+				if senderLOS then
+					if (interferenceEnergy < 20 and interferenceTP > 2.5) then
+						rate = 0
+					else
+						rate = 38 + varianz
+					end
+				else
+					rate = 0
+				end
+			else
+				if senderLOS then
+					rate = 38 + varianz
+				else
+					rate = (-(2.8)^2) * interferenceTP - 3.5 * interferenceTP + 38 + varianz
+					if interferenceTP > 2.5 then
+						rate = 0
+					end
+				end
+			end
+
+
+			print("Rate: "..rate.."")
+
+			if rate == 0 then
+				loss = true;
+				sendCount = sendCount - 1
+				print("Packet lost")
+			end
 
 			local retransmissionAttempt = 0;
 			local buf = bufs[iix]
@@ -256,8 +288,9 @@ function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
 
 			--pktsize 127 B
 			--250 kb/s
-
-			local min_latency_due_to_throughput = 1 / 246 * tsc_hz --  change! pkt/s, is this correct?
+			
+			--local min_latency_due_to_throughput = 1 / rate * tsc_hz --  change! pkt/s, is this correct?
+			local min_latency_due_to_throughput = 1 / 67 * tsc_hz --change this!!!
 
 			local send_time = arrival_timestamp + (tsc_hz_ms * retransmissionAttempt)
 			local send_time_limit = last_send_time + min_latency_due_to_throughput
@@ -402,6 +435,7 @@ function server(ns)
 					ns.energy_interference = data.energy_interference
 					ns.los_sender = data.los_sender
 					ns.los_interference = data.los_interference
+					ns.interference_throughput = data.interference_throughput
                 else
                     print("Invalid Lua table format.")
                 end
