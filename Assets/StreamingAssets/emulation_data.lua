@@ -1,1 +1,1 @@
-{    energy_interference = -32.738234347372021,    energy_sender = -64.3509885422694,    los_interference = false,    los_sender = false,    interference_throughput = 5,}
+{    energy_interference = -22.599092241501182,    energy_sender = -58.701288711081872,    los_interference = true,    los_sender = true,    interference_throughput = 5,}
