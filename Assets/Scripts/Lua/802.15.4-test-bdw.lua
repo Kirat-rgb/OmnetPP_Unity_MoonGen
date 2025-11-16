@@ -50,10 +50,9 @@ function master(args)
 	-- create the ring buffers
 	-- should set the size here, based on the line speed and latency, and maybe desired queue depth
 	local qdepth1 = args.queuedepth[1]
-	--qdepth1 = math.ceil(2097152/1280)
 
-	rate1 = args.rate[1] --its kbit/s not mbit/s
-	rate2 = args.rate[2]
+	rate1 = args.rate[1] \ 1000 --its kbit/s not mbit/s
+	rate2 = args.rate[2] \ 1000
 
 
 	if qdepth1 < 1 then
@@ -121,7 +120,6 @@ function receive(ring, rxQueue, rxDev, ns, threadId)
 	local tsc_hz_ms = tsc_hz / 1000
 	local overflow_count = 0
 	local start_time = limiter:get_tsc_cycles() / tsc_hz_ms
-	--local ring_capacity = pipe:capacityPktsizedRing(ring.ring)
 	local ring_capacity = math.ceil(2097152/1280)
 
 
@@ -133,7 +131,6 @@ function receive(ring, rxQueue, rxDev, ns, threadId)
 			local buf = bufs[iix]
 			local ts = limiter:get_tsc_cycles()
 			buf.udata64 = ts
-			--print("RXRX arrival: ", bit64.tohex(buf.udata64))
 		end
 
 		--Packet overflow handling
@@ -153,9 +150,6 @@ function receive(ring, rxQueue, rxDev, ns, threadId)
 
 		if threadId == 2 then
 			local current_time = limiter:get_tsc_cycles() / tsc_hz_ms
-			--[[ ns.rlcMessage = string.format("[RLC] T: %s, Loss: %d, Queue: %d, of %d\n", 
-                                              tostring(current_time - start_time), overflow_count or 0, pipe:countPktsizedRing(ring.ring) or 0, ring_capacity) ]]
-			--print("RLC Loss: ",overflow_count)
 		end
 
 		
@@ -170,8 +164,6 @@ end
 
 function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
 
-	local maxRetries = 3;
-
 	print("forward with rate "..rate.." and latency "..latency.."")
 	local numThreads = 1
 	
@@ -182,9 +174,6 @@ function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
 	local tsc_hz_ms = tsc_hz / 1000
 	print("tsc_hz = "..tsc_hz)
 
-	local packetInfo = {}
-	local packetInfoLength = 0
-
 	ns.messageToSend = nil
 	ns.messageId = 1
 	ns.packetInfoLength = 0
@@ -192,12 +181,6 @@ function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
 	-- larger batch size is useful when sending it through a rate limiter
 	local bufs = memory.createBufArray()  --memory:bufArray()  --(128)
 	local count = 0
-
-	local lastPrintTime = 0
-	local start_time = limiter:get_tsc_cycles() / tsc_hz_ms
-
-	local packetBuffer = {}
-	local bufferIndex = 1
 
 	while mg.running() do
 
@@ -216,7 +199,6 @@ function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
 
 			--varianz = math.random(-3, 3)
 			varianz = 0
-			--print("Varianz: "..varianz.."")
 			if interferenceLOS then
 				if senderLOS then
 					if (interferenceEnergy > -20 and interferenceTP > 2.5) then
@@ -225,13 +207,12 @@ function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
 						rate = 38 + varianz
 					end
 				else
-					rate = 0
+					rate = 0 --stimmt das so???
 				end
 			else
 				if senderLOS then
 					rate = 38 + varianz
 				else
-					print("interferenceTP="..interferenceTP.."")
 					rate = -2.8 * interferenceTP^2 - 3.5 * interferenceTP + 38 + varianz
 					if interferenceTP > 2.5 then
 						rate = 0
@@ -248,21 +229,13 @@ function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
 				print("Packet lost")
 			end
 
-			local retransmissionAttempt = 0;
 			local buf = bufs[iix]
 			
 
 			-- local current_time = limiter:get_tsc_cycles()
 			-- get the buf's arrival timestamp and compute departure time
 			local arrival_timestamp = buf.udata64
-			--print("TXTX arrival: ", bit64.tohex(buf.udata64))
-
-
-			local send_time = arrival_timestamp + (tsc_hz_ms * retransmissionAttempt)
-
-
-			--print("TXTX send time: ", bit64.tohex(send_time))
-			 --print("TXTX tsc_cycles: ", bit64.tohex(limiter:get_tsc_cycles()))
+			local send_time = arrival_timestamp
 
 			-- spin/wait until it is time to send this frame
 			-- this does not allow reordering of frames
@@ -292,10 +265,9 @@ function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
 				    sendCount = sendCount - 1
 				    if sendCount < 0 then
 				       currentSendTime = "Lost"
-                    		    end
-                		end
+					end
+				end
 			end
-			
 		end
 
 		local currentTime = os.clock()
