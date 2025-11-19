@@ -100,6 +100,12 @@ public class ENBMovementControl : MonoBehaviour
             move.x += 1;
         }
 
+        int faster = 1;
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            faster = 10;
+        }
+
         move.y = 0;
 
         if (move != Vector3.zero)
@@ -109,7 +115,7 @@ public class ENBMovementControl : MonoBehaviour
 
         if (selected)
         {
-            transform.Translate(move * moveSpeed * Time.fixedDeltaTime, Space.World);
+            transform.Translate(move * moveSpeed* faster * Time.fixedDeltaTime, Space.World);
         }
     }
 }

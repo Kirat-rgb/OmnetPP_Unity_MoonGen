@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class CanvasToggleWithKey : MonoBehaviour
@@ -28,10 +29,11 @@ public class CanvasToggleWithKey : MonoBehaviour
             {
                 childCanvas.enabled = !currentState;
             }
+            
         }
         else
         {
-            Debug.LogWarning("Canvas ÒýÓÃÎ´ÉèÖÃ£¡");
+            Debug.LogWarning("Canvas ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½Ã£ï¿½");
         }
     }
 
