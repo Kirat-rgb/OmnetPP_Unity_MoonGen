@@ -658,7 +658,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &84238047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1679,7 +1679,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &254793396
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2106,7 +2106,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &278145642
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2696,6 +2696,10 @@ PrefabInstance:
       propertyPath: privateKeyPath
       value: '"C:\Users\joshu\.ssh\UnityTestPrivate.ppk"'
       objectReference: {fileID: 0}
+    - target: {fileID: 642143416911962850, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 722656577363798291, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -2747,6 +2751,14 @@ PrefabInstance:
     - target: {fileID: 1441638894532148212, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567948250891888522, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567948250891888522, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 102
       objectReference: {fileID: 0}
     - target: {fileID: 1763231233164106782, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2806,11 +2818,11 @@ PrefabInstance:
       objectReference: {fileID: 1341223684}
     - target: {fileID: 2193254980548509917, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2193254980548509917, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2208880993162916897, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
       propertyPath: sshHost
@@ -2828,6 +2840,18 @@ PrefabInstance:
       propertyPath: privateKeyPath
       value: '"C:\Users\joshu\.ssh\UnityTestPrivate.ppk"'
       objectReference: {fileID: 0}
+    - target: {fileID: 2770163303582671164, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -190
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770163303582671164, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 102
+      objectReference: {fileID: 0}
+    - target: {fileID: 2862740636942473871, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3318199645318869169, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2836,9 +2860,25 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3972809846793444210, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4326699017026005219, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4449003367747134653, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4588739742905743995, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
       propertyPath: m_Name
       value: Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 4774082831094792123, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4815304690982554669, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
@@ -2932,16 +2972,36 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5617874907675433525, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5646350955238787056, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6083660877030176874, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -156
+      objectReference: {fileID: 0}
     - target: {fileID: 6174191944709943763, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
       propertyPath: m_Name
       value: BER
       objectReference: {fileID: 0}
-    - target: {fileID: 6390506943489606446, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
-      propertyPath: m_AnchorMax.x
+    - target: {fileID: 6174191944709943763, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6390506943489606446, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6390506943489606446, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6492723988897352539, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6561244180125394828, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
@@ -2976,6 +3036,14 @@ PrefabInstance:
       propertyPath: plinkInterface
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8373337211765913776, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
+      propertyPath: canvases.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8373337211765913776, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
+      propertyPath: 'canvases.Array.data[1]'
+      value: 
+      objectReference: {fileID: 972612533}
     - target: {fileID: 8751011254135846901, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: sudo ./build/MoonGen examples/802.15.4-test.lua -d 1 3 -r 250 250 -l
@@ -3143,7 +3211,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &492272214
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4977,7 +5045,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &836007893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6061,7 +6129,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &951636583
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6316,6 +6384,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 953768243}
   m_CullTransparentMesh: 1
+--- !u!223 &972612533 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 6467451443993604384, guid: 1499069da9af06442848d617c4a2b2c1, type: 3}
+  m_PrefabInstance: {fileID: 427811540}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &973474762
 GameObject:
   m_ObjectHideFlags: 0
@@ -6909,7 +6982,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1069804534
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8157,7 +8230,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1268506635
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9480,7 +9553,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1463154186
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11158,7 +11231,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1862380333
 RectTransform:
   m_ObjectHideFlags: 0
