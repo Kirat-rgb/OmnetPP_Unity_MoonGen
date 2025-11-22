@@ -63,6 +63,7 @@ public class JsonToLua : MonoBehaviour
         }
         luaString.Append("}");
         //luaString.AppendLine("return data");
+        Debug.Log(luaString.ToString() + "Test");
         return luaString.ToString();
     }
 
