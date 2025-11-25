@@ -210,7 +210,7 @@ function forward(ring, txQueue, txDev, ns, rate, latency, threadId)
 					if not interferenceTP is 0 then
 						rate = 0
 					else	
-						rate = 38
+						rate = 38 + varianz
 					end
 				end
 			else
